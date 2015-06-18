@@ -8,23 +8,34 @@ class ProductController extends ControllerBase {
         ));
     }
 
-    public function actionIndex() {
-        scriptFile(App()->theme->baseUrl . "/js/jquery.bxSlider.js");
-        cssFile(App()->theme->baseUrl . "/css/jquery.bxslider.css");
+    public function actionIndex() {        
+        $products = Product::model()->findAll(array(
+            'condition' => 'status = 1',
+            'order' => 'RAND()',
+            'limit' => '6'
+        ));
         
-        $terms = Term::model()->findAll(array(
-            'condition' => 'status = 1 AND parent_id = 0',
+        $currentProducts = null;
+        foreach ($products as $k => $v)
+            $currentProducts .= $v->id.",";
+        
+        $currentProducts = rtrim($currentProducts, ',');
+        
+        $otherProducts = Product::model()->findAll(array(
+            'condition' => 'id NOT IN ('.$currentProducts.') AND status = 1',
         ));
         
         //get promotion products
         $criteria = new CDBCriteria();
         $criteria->condition = "promote = 1 AND status = 1";
-                
+        $criteria->order = "RAND()";
+        $criteria->limit = 2;
         $promote = Product::model()->findAll($criteria);
                 
         $this->render('index', array(
-            'terms' => $terms,
-            'promote' => $promote                
+            'products' => $products,
+            'others' => $otherProducts,
+            'promote' => $promote
         ));
     }
 
@@ -98,10 +109,9 @@ class ProductController extends ControllerBase {
     }
 
     public function actionDetail($pid) {
-        cssFile(App()->theme->baseUrl . '/css/jquery.jqzoom.css');
-        scriptFile(App()->theme->baseUrl . '/js/jquery.browser.js', CClientScript::POS_BEGIN);
-        scriptFile(App()->theme->baseUrl . '/js/jquery.jqzoom-core.js', CClientScript::POS_BEGIN);        
-        scriptFile(App()->theme->baseUrl . '/js/jquery.ddslick.js', CClientScript::POS_BEGIN);
+        cssFile(App()->theme->baseUrl."/css/bootstrap.min.css");
+        scriptFile(App()->theme->baseUrl.'/js/bootstrap.js');
+        scriptFile(App()->theme->baseUrl."/js/bootbox.min.js");
         
         $product = Product::model()->findByPk($pid);
 
@@ -151,9 +161,20 @@ class ProductController extends ControllerBase {
             )
         ));
         
+        //get current product id within the category
+        $currentProducts = null;
+        foreach ($product as $k => $v)
+            $currentProducts .= $v->id.",";
+        $currentProducts = rtrim($currentProducts, ',');
+
+        $randomProducts = Product::model()->findAll(array(
+            'condition' => 'id NOT IN ('.$currentProducts.')',
+            'order' => 'create_time DESC'
+        ));
+                
         $this->render('loadProductByCate', array(
             'products' => $product,
-            'totalProducts' => count($product)
+            'otherProducts' => $randomProducts
         ));
     }
 

@@ -2,6 +2,7 @@
 
 return array(
     'basePath' => dirname(__file__) . DIRECTORY_SEPARATOR . '..',
+    'timeZone' => 'Asia/Ho_Chi_Minh',
     'name' => SITE_NAME,
     'language' => LOCALE,
     'theme' => THEME,
@@ -117,6 +118,13 @@ return array(
                 '/' => 'product/index',
                 'detail/<cate>/<alias:\w>-<id:\d>' => 'product/view'
             ),
+        ),
+        'image'=>array(
+            'class'=>'application.extensions.image.CImageComponent',
+            // GD or ImageMagick
+            'driver'=>'GD',
+            // ImageMagick setup path
+            'params'=>array('directory'=>'D:/Program Files/ImageMagick-6.4.8-Q16'),
         ),
         'bootstrap' => array('class' => 'bootstrap.components.Bootstrap',),
         'shoppingCart' => array('class' => 'ext.cart.EShoppingCart',),

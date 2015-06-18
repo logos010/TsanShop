@@ -1,308 +1,255 @@
 <?php
+cssFile(App()->theme->baseUrl . "/css/easyzoom.css");
+cssFile(App()->theme->baseUrl . "/css/pygments.css");
+scriptFile(App()->theme->baseUrl . "/js/jquery.jscrollpane.min.js");
+
 $this->breadcrumbs = array(
     'Sản phẩm'
 );
+
+$original = str_replace('medium', 'original', $product->image);
 ?>
-<div class="product-details-container">
-    <div class="product-details-column-left">
-        <!-- START OF MAIN PRODUCT IMAGE -->
-        <div class="main-product-img">
-            <div class="clearfix">
-                <?php
-                $mediumImg = BASE_URL . '/' . $product->image;
-                $largeImg = BASE_URL . '/' . str_replace('medium', 'original', $product->image);
-                ?>
-                <a href="<?php echo $largeImg; ?>" class="jqzoom" rel='gal1'  title="<?php echo $product->name; ?>" >
-                    <img src="<?php echo $mediumImg; ?>"  title="<?php echo $product->name; ?>">
-                </a>
+<script src="<?php echo App()->theme->baseUrl; ?>/js/easyzoom.js"></script>
+<!-- the jScrollPane script -->
+<script type="text/javascript" id="sourcecode">
+    $(function ()
+    {
+        $('.scroll-pane').jScrollPane();
+    });
+</script> 
+
+<!-- PRODUCT DETAIL-->
+<div class="single">
+    <div class="col-md-9">
+        <div class="single_grid">
+            <div class="grid images_3_of_2">
+                <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
+                    <a href="<?php echo $original; ?>">
+                        <img src="<?php echo $product->image; ?>" alt="" width="300" height="400" />
+                    </a>
+                </div>
+
+                <ul class="thumbnails">
+                    <?php
+                    foreach ($gallery as $k => $v):
+                        $medium = str_replace('original', 'medium', $v->uri);
+                        $small = str_replace('original', 'small', $v->uri);
+                        ?>
+                        <li>
+                            <a href="<?php echo BASE_URL . "/" . $v->uri; ?>" data-standard="<?php echo BASE_URL . "/" . $medium; ?>">
+                                <img src="<?php echo BASE_URL . "/" . $small; ?>" alt="" />
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                    <li>
+                        <a href="<?php echo $original; ?>" data-standard="<?php echo $product->image; ?>">
+                            <img src="<?php echo $product->image; ?>" width="50" alt="" />
+                        </a>
+                    </li>
+                </ul>                
+                <div class="clearfix"></div>		
+            </div> 
+            <!---->
+            <div class="span1_of_1_des">
+                <div class="desc1">
+                    <h3><?php echo $product->name ?></h3>
+                    <p><?php echo $product->description; ?></p>
+                    <h5><?php echo number_format($product->price, 0, '', ',') ?> <sup>đ</sup></h5>
+                    <div class="available">
+                        <h4>Tôi muôn mua:</h4>
+                        <ul>
+                            <li>Size:
+                                <select name="product_size">
+                                    <option>L</option>
+                                    <option>XL</option>
+                                    <option>S</option>
+                                    <option>M</option>
+                                </select>
+                            </li>
+                            <li>Số lượng:
+                                <select name="product_qty">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div class="form-in">
+                            <a href="javascript:void(0)" class="add-to-cart">Mua hàng</a>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="share-desc">
+                        <div class="share">
+                            <h4>Share Product :</h4>
+                            <ul class="share_nav">
+                                <li><a href="#"><img src="<?php echo App()->theme->baseUrl; ?>/images/facebook.png" title="facebook"></a></li>
+                                <li><a href="#"><img src="<?php echo App()->theme->baseUrl; ?>/images/twitter.png" title="Twiiter"></a></li>
+                                <li><a href="#"><img src="<?php echo App()->theme->baseUrl; ?>/images/rss.png" title="Rss"></a></li>
+                                <li><a href="#"><img src="<?php echo App()->theme->baseUrl; ?>/images/gpluse.png" title="Google+"></a></li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
             </div>
+            <div class="clearfix"></div>
+        </div>
 
-            <br>
-            <div class="clearfix">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tbody>
-                        <tr align="center">
-                            <td align="center">
-                                <ul id="thumblist" class="clearfix">
-                                    <?php foreach ($gallery as $k => $v): ?>
-                                        <li>
-                                            <?php
-                                            $smallImg = BASE_URL . '/' . str_replace('original', 'small', $v->uri);
-                                            $mediumImg = BASE_URL . '/' . str_replace('original', 'medium', $v->uri);
-                                            $largeImg = BASE_URL . '/' . str_replace('original', 'original', $v->uri);
-                                            ?>
-                                            <a class="zoomThumbActive" href="javascript:void(0);" rel="{gallery: 'gal1', smallimage: '<?php echo $mediumImg; ?>',largeimage: '<?php echo $largeImg; ?>'}">
-                                                <img src="<?php echo $smallImg; ?>" height="40" alt="ANKLE STRAP HEELS">
-                                            </a>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr align="center">
-                            <td align="center">
-                                <div class="share-box">
-                                    <span class="share-text">SHARE</span>
-                                    <div class="share-icon" style="display: none;">
-                                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.charleskeith.com%2FINTLStore%2FCK%2FASM%2F%2520Shoes%2FHeels%2FAnkle-Strap-Heels%2FCream%2FCK1-60360771%2FProduct" class="facebook" target="_blank"></a>
-                                        <a href="http://twitter.com/share?url=http%3A%2F%2Fwww.charleskeith.com%2FINTLStore%2FCK%2FASM%2F%2520Shoes%2FHeels%2FAnkle-Strap-Heels%2FCream%2FCK1-60360771%2FProduct" class="twitter" target="_blank"></a>
-                                        <a href="https://plus.google.com/share?url=http%3A%2F%2Fwww.charleskeith.com%2FINTLStore%2FCK%2FASM%2F%2520Shoes%2FHeels%2FAnkle-Strap-Heels%2FCream%2FCK1-60360771%2FProduct" class="googleplus" target="_blank"></a>
-                                        <a href="http://www.tumblr.com/share/link?url=http%3A%2F%2Fwww.charleskeith.com%2FINTLStore%2FCK%2FASM%2F%2520Shoes%2FHeels%2FAnkle-Strap-Heels%2FCream%2FCK1-60360771%2FProduct" class="tumblr" target="_blank"></a>
-                                        <a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.charleskeith.com%2FINTLStore%2FCK%2FASM%2F%2520Shoes%2FHeels%2FAnkle-Strap-Heels%2FCream%2FCK1-60360771%2FProduct" class="pinterest" target="_blank"></a>
-                                        <a href="http://statigr.am/charleskeithofficial" class="instagram" target="_blank"></a>
-                                        <a href="mailto:?body=http%3A%2F%2Fwww.charleskeith.com%2FINTLStore%2FCK%2FASM%2F%2520Shoes%2FHeels%2FAnkle-Strap-Heels%2FCream%2FCK1-60360771%2FProduct" class="showoverlay email"></a>
-                                        <a href="javascript:window.print()" class="print"></a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!----- tabs-box ---->
+        <div class="sap_tabs">	
+            <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                <ul class="resp-tabs-list">
+                    <li class="resp-tab-item " aria-controls="tab_item-0" role="tab"><span>Thông tin sản phẩm</span></li>
+                    <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Tôi cảm thấy ...</span></li>
+                    <div class="clearfix"></div>
+                </ul>				  	 
+                <div class="resp-tabs-container">
+                    <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0">
+                        <span class="resp-arrow"></span>Thông tin sản phẩm</h2>
+                    <div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
+                        <div class="facts">
+                            <p > There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
+                            <ul>
+                                <li>Research</li>
+                                <li>Design and Development</li>
+                                <li>Porting and Optimization</li>
+                                <li>System integration</li>
+                                <li>Verification, Validation and Testing</li>
+                                <li>Maintenance and Support</li>
+                            </ul>         
+                        </div>
+                    </div>
+                    <h2 class="resp-accordion" role="tab" aria-controls="tab_item-1">
+                        <span class="resp-arrow"></span>Tôi cảm thấy ...</h2>
+                    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+                        <div class="facts">									
+                            <p > Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
+                            <ul >
+                                <li>Multimedia Systems</li>
+                                <li>Digital media adapters</li>
+                                <li>Set top boxes for HDTV and IPTV Player applications on various Operating Systems and Hardware Platforms</li>
+                            </ul>
+                        </div>	
+                    </div>
+                </div>
             </div>
+            <script src="<?php echo App()->theme->baseUrl; ?>/js/easyResponsiveTabs.js" type="text/javascript"></script>
+            <script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion           
+            width: 'auto', //auto or any width like 600px
+            fit: true   // 100% fit in a container
+        });
+    });
+            </script>
         </div>
-        <!-- END OF MAIN PRODUCT IMAGE -->
-    </div> <!-- END OF COLUMN LEFT -->
-
-    <div class="product-details-column-right">
-        <div class="product-main-desc">
-            <div class="product-name"><?php echo $product->name; ?></div>
-            <div class="spacer"></div>
-            <div class="product-code">CK1-60360771</div>
-            <div class="spacer"></div>
-            <div class="product-price">
-                <?php echo ($product->discount != 0) ? $product->isProductDiscounted($product) : number_format($product->price, 0, '', ',') . "<sup> đ</sup>"; ?>
-            </div>
-            <div class="spacer"></div>
-        </div>
-
-
-
-        <!-- START OF BUTTON HOLDER -->
-        <div class="product-navigator">                           
-        </div>
-        <!-- END OF BUTTON HOLDER --> 
-        <div class="spacer"></div>
-
-        <!-- START Main Info in Collapsible -->
-        <div id="accordion-maininfo">
-            <?php echo $product->detail; ?>
-            <!-- Product detail block --> 
-        </div>
-        <div class="spacer"></div>
-        <!-- END Main Info in Collapsible -->
-
-        <div class="spacer2"></div>
-        <div class="size-section" id="sizeDropDown">
-            <select id="product_size" title="Size" multiple="multiple" name="Size" size="3">
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-            </select>
-            <input type="hidden" name="product_size" id="prod_size" />
-            <div class="clear"></div>
-            <span id="sizeValidator" style="color: red"></span>
-        </div>
-
-        <div class="spacer"></div>
-        <div class="qty-section" id="quantityDropDown">
-            <select id="product_qty" title="Quantity" multiple="multiple" name="Quantity" size="3" disabled>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-            <input type="hidden" name="product_qty" id="prod_qty" />
-        </div>
-
-        <!-- START OF COLOR, SIZE, QTY SELECT SECTION -->
-
-        <div class="qty-section" id="quantityDropDown">
-        </div>
-        <div class="clear"></div>
-        <div class="spacer1-5"></div>
-        <input id="addToBagButton" name="" type="image" value="ADD TO BAG" src="<?php echo App()->theme->baseUrl; ?>/images/buttons/new/btn-addtobag.gif" onclick="javascript:void(0)">
     </div>
+    <!---->
+    <div class="col-md-3">
+        <div class="w_sidebar">
+            <section  class="sky-form">
+                <h4>catogories</h4>
+                <div class="row1 scroll-pane">
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>kurtas</label>
+                    </div>
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>kutis</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>churidar kurta</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>salwar</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>printed sari</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>shree</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>fashion sari</label>	
+                    </div>
+                </div>
+            </section>
 
-    <div class="spacer2"></div>
-
-    <!-- LAST PRODUCTS -->
-    <div class="product-details-last-viewed">
-        <div class="hr"></div>
-        <div class="spacer2"></div>
-        <h2>Last Viewed Products</h2>
-        <script type="text/javascript">
-            if (Cookies.get('lastViewedProucts').length != 0) {
-                var lastViewed = $.parseJSON(Cookies.get('lastViewedProucts'));
-                var baseUrl = '<?php echo BASE_URL . "/"; ?>';
-                var count = lastViewed['items'].length;
-                var productLink = "<?php echo App()->controller->createUrl('/product/detail/pid/'); ?>";
-
-                for (i = 0; i < count; i++) {
-                    document.write('<div class="catalogue-itembox">');
-                    document.write('<div class="item-product-img">');
-                    document.write('<a href="' + productLink + '/' + lastViewed['items'][i]['id'] + '">');
-                    document.write('<img src="' + baseUrl + lastViewed['items'][i]['image'] + '" border="0" class="product-img" alt="' + lastViewed['items'][i]['name'] + '" title="' + lastViewed['items'][i]['name'] + '" />');
-                    document.write('</a>');
-                    document.write('</div>');
-                    document.write('</div>');
-                }
-            }
-//            console.log("Remove cookie - " + $.removeCookie('lastViewedProucts')); 
-        </script>
-        <div class="clear"></div>
+            <section class="sky-form">
+                <h4>colour</h4>
+                <ul class="w_nav2">
+                    <li><a class="color1" href="#"></a></li>
+                    <li><a class="color2" href="#"></a></li>
+                    <li><a class="color3" href="#"></a></li>
+                    <li><a class="color4" href="#"></a></li>
+                    <li><a class="color5" href="#"></a></li>
+                    <li><a class="color6" href="#"></a></li>
+                    <li><a class="color7" href="#"></a></li>
+                    <li><a class="color8" href="#"></a></li>
+                    <li><a class="color9" href="#"></a></li>
+                    <li><a class="color10" href="#"></a></li>
+                    <li><a class="color12" href="#"></a></li>
+                    <li><a class="color13" href="#"></a></li>
+                    <li><a class="color14" href="#"></a></li>
+                    <li><a class="color15" href="#"></a></li>
+                    <li><a class="color5" href="#"></a></li>
+                    <li><a class="color6" href="#"></a></li>
+                    <li><a class="color7" href="#"></a></li>
+                    <li><a class="color8" href="#"></a></li>
+                    <li><a class="color9" href="#"></a></li>
+                    <li><a class="color10" href="#"></a></li>
+                </ul>
+            </section>
+            <section class="sky-form">
+                <h4>discount</h4>
+                <div class="row1 scroll-pane">
+                    <div class="col col-4">
+                        <label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
+                        <label class="radio"><input type="radio" name="radio"><i></i>50 % and above</label>
+                        <label class="radio"><input type="radio" name="radio"><i></i>40 % and above</label>
+                    </div>
+                    <div class="col col-4">
+                        <label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
+                        <label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
+                        <label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
+                    </div>
+                </div>						
+            </section>
+        </div>
     </div>
-
-    <div class="clear"></div>
+    <div class="clearfix"> </div>
 </div>
 
 <script type="text/javascript">
-    //settings of product main info accordion 
-    $("#accordion-maininfo").accordion({
-        //0019596: Auto-expand DETAILS tab in product detail page
-        //active: false,
-        heightStyle: "content",
-        collapsible: true
+    var $easyzoom = $('.easyzoom').easyZoom();
+    // Get an instance API
+    var api = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
+    $(".thumbnails").on("click", "a", function (e) {
+        var $this = $(this);
+        e.preventDefault();
+        // Use EasyZoom's `swap` method
+        api.swap($this.data("standard"), $this.attr("href"));
     });
-    // product image zoom in setting
-    $('.jqzoom').jqzoom({
-        zoomType: 'innerzoom',
-        preloadImages: false,
-        alwaysOn: false,
-        title: false,
-        zoomWidth: 2,
-        zoomHeight: 2
-    });
-    // if the browser is IE8, remove the float style.
-    // this is workaround for tracking issue #0015019 (Big image not displayed properly when viewing in product details page using IE8)
-    if ($.browser.msie && document.documentMode && document.documentMode == 8) {
-        $(".jqzoom").css("float", "none");
-        if ($(".zoomPad").length > 0) {
-            $(".zoomPad").css("float", "none");
-        }
-    }
 
-    // show & hide share icons
-    $(".share-text").mouseenter(function () {
-        clearTimeout(timeout);
-        $('.share-icon').show();
-    });
-    $(".share-text").mouseleave(function () {
-        clearTimeout(timeout);
-        timeout = setTimeout(function ()
-        {
-            $('.share-icon').hide();
-        }, 200);
-    });
-    $(".share-icon").mouseenter(function () {
-        clearTimeout(timeout);
-        $('.share-icon').show();
-    });
-    $(".share-icon").mouseleave(function () {
-        clearTimeout(timeout);
-        timeout = setTimeout(function ()
-        {
-            $('.share-icon').hide();
-        }, 200);
-    });
-    //select box
-    $('#product_size').ddslick({
-        height: 100,
-        width: 100,
-        selectText: "Size",
-    });
-    $('#product_qty').ddslick({
-        height: 100,
-        width: 100,
-        selectText: "Quantitly",
-    });
-    //http://designwithpc.com/plugins/ddslick
-    function getSelectedValue(selectBox) {
-        $('#' + selectBox).on('click', function () {
-            var ddData = $('#' + selectBox).data('ddslick');
-            if (!$.isEmptyObject(ddData['selectedData'])) {
-                $("input[name='" + selectBox + "']").val(ddData['selectedData']['value']);
-                return ddData['selectedData']['value'];
-            }
-        });
-    }
-    getSelectedValue('product_size');
-    getSelectedValue('product_qty');
-
-    //add to cart
-    $("#addToBagButton").on('click', function () {
-        var s = $("input[name='product_size']").val();
-        var q = $("input[name='product_qty']").val();
+    $("a.add-to-cart").on('click', function () {
+        var s = $("select[name='product_size']").val();
+        var q = $("select[name='product_qty']").val();
         var productName = '<?php echo $product->name; ?>';
-
-        if (s === '' || q === '') {
-            bootbox.alert("Bạn chưa chọn kích cỡ HOẶC số lượng sản phẩm");
-            return false;
-        }
-
 
         $.ajax({
             url: "<?php echo App()->controller->createUrl('/order/addToCart'); ?>",
             type: 'post',
             data: "pid=<?php echo $product->id; ?>&quantity=" + q + "&size=" + s,
             success: function (items) {
-                $("#shopping-item").html("(" + items + ")");
+                //$("#shopping-item").html("(" + items + ")");
+                console.log(items);
             },
             complete: function () {
-                bootbox.alert("Sản phẩm '" + productName + "' của bạn đã được đưa vào giỏ hàng.");
+                bootbox.alert("'<strong>" + productName + "</strong>' của bạn đã được đưa vào giỏ hàng.");
             }
         });
     });
-
-    //set lastest viwwed products    
-    
-    Cookies.set ('lastViewedProucts', '', { expires: 7 });
-
-    if (Cookies.get('lastViewedProucts') === undefined || Cookies.get('lastViewedProucts') === '') {
-        var productID = "<?php echo $product->id ?>";
-        var productName = "<?php echo $product->name ?>";
-        var productImg = "<?php echo $product->image ?>";
-        var last = new Object();
-        last = {"items": [{"id": productID, "name": productName, "image": productImg}]};
-        Cookies.set('lastViewedProucts', last);
-    }
-    else {
-        var currentProductID = "<?php echo $product->id; ?>";
-        var cookie = Cookies.get('lastViewedProucts');
-        var existed = 0;
-        for (var i = 0; i < count; i++) {
-//            console.log("last viewed: " + lastViewed['items'][i]['id'] + " Current: " + currentProductID);
-//            console.log(lastViewed['items'][i]['id'] === currentProductID);
-            if (lastViewed['items'][i]['id'] === currentProductID) {
-                existed = 1;
-                break;
-            }
-        }
-    }
-
-    //Add cookie when the product was viewed did not exist
-    if (!existed) {
-        if (cookie) {
-            cookie.items.push({"id": currentProductID, "name": "<?php echo $product->name ?>", "image": "<?php echo $product->image ?>"});
-
-            if (count >= 6) {
-                cookie.items.shift();
-                $.cookie('lastViewedProucts', cookie);
-            }
-
-            $.cookie('lastViewedProucts', cookie);
-            console.log($.cookie('lastViewedProucts'));
-        }
-    }
-//    Cookies.remove('lastViewedProucts', {path: '/'});
-
 </script>

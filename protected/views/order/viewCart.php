@@ -11,17 +11,16 @@ $this->breadcrumbs = array(
 <?php scriptFile(themeUrl() . "/js/jquery.number.js", CClientScript::POS_BEGIN); ?>
 
 <section id="cart_items">
-    <div class="container">
-        <div class="table-responsive cart_info">
-            <form id="editForm" name="shoppingBagView" > 
+    <div class="table-responsive cart_info">
+        <form id="editForm" name="shoppingBagView" > 
             <table class="table table-condensed">
                 <thead>
                     <tr class="cart_menu">
-                        <td class="image">Item</td>
-                        <td class="description">Name</td>
-                        <td class="price">Price</td>
-                        <td class="quantity">Quantity</td>
-                        <td class="total">Total</td>
+                        <td class="image">Sản phẩm</td>
+                        <td class="description">Tên</td>
+                        <td class="price">Giá thành</td>
+                        <td class="quantity">Số lượng</td>
+                        <td class="total">Tổng</td>
                         <td></td>
                     </tr>
                 </thead>
@@ -29,7 +28,8 @@ $this->breadcrumbs = array(
                     <?php foreach ($items as $item): ?>
                         <tr id="itemRow-<?php echo $item->id ?>">
                             <td class="cart_product">
-                                <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $item->id)); ?>"><img src="<?php echo BASE_URL . "/" . $item->image;  ?>" width="80" alt="<?php echo $item->name ?>"></a>
+                                <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $item->id)); ?>">
+                                    <img src="<?php echo $item->image; ?>" width="80" alt="<?php echo $item->name ?>"></a>
                             </td>
                             <td class="cart_description">
                                 <h4><a href=""><?php echo $item->name ?></a></h4>
@@ -58,19 +58,19 @@ $this->breadcrumbs = array(
                         <td colspan="2">
                             <table class="table table-condensed total-result">
                                 <tr>
-                                    <td>Cart Sub Total</td>
+                                    <td>Tổng đơn hàng</td>
                                     <td id="total-without-tax"><?php echo number_format($totalPrice, 0, '.', ','); ?> <sup>đ</sup></td>
                                 </tr>
                                 <tr>
-                                    <td>Exo Tax</td>
+                                    <td>Thuế</td>
                                     <td>$0</td>
                                 </tr>
                                 <tr class="shipping-cost">
-                                    <td>Shipping Cost</td>
+                                    <td>Phí vận chuyển</td>
                                     <td>Free</td>										
                                 </tr>
                                 <tr>
-                                    <td>Total</td>
+                                    <td>Tổng</td>
                                     <td id="final-total"><strong><span><?php echo number_format($totalPrice, 0, '.', ','); ?> <sup>đ</sup></span></strong></td>
                                 </tr>
                             </table>
@@ -78,29 +78,27 @@ $this->breadcrumbs = array(
                     </tr>                    
                 </tbody>
             </table>
-            </form>
-        </div>
-        
-        <?php if (App()->shoppingCart->getCount()): ?>
-            <input name="button" class="btn btn-primary pull-right" id="checkout" value="Check out" type="submit">
-        <?php endif; ?>
-        
-        <div id="msg">
-            <div class="alert alert-info" role="alert">
-                
-                <strong>Gio hang</strong> cua ban dang trong.
-            </div>                                                
-        </div>
-    </div> 
+        </form>
+    </div>
+
+    <?php if (App()->shoppingCart->getCount()): ?>
+        <input name="button" class="btn btn-primary pull-right" id="checkout" value="Xác nhận" type="submit">
+    <?php endif; ?>
+
+    <div id="msg">
+        <div class="alert alert-info" role="alert">                
+            <strong>Giỏhàng</strong> của bạn đang trống.
+        </div>                                                
+    </div>    
 </section>
 
 <script type="text/javascript">
-    var itemInCart = <?php echo App()->shoppingCart->getCount(); ?>;    
-    if (itemInCart === 0){
+    var itemInCart = <?php echo App()->shoppingCart->getCount(); ?>;
+    if (itemInCart === 0) {
         $("#msg").show();
         $(".cart_info").hide();
     }
-    
+
     //add product
     $("a.cart_quantity_up").on('click', function () {
         var itemID = $(this).attr('id').substring(4, 5);
@@ -108,7 +106,7 @@ $this->breadcrumbs = array(
         if (newQuantity > 20)
             newQuantity--;
         var newTotalPrice = priceFormat($("#price-" + itemID).text()) * newQuantity;
-        
+
 //        console.log(parseFloat($("#price-" + itemID).text()) + " * " + newQuantity);
 //        console.log(newTotalPrice);
 
@@ -116,7 +114,7 @@ $this->breadcrumbs = array(
         $("#quantity-" + itemID).val(newQuantity);
         $("#total-" + itemID).text($.number(newTotalPrice));
         reCalculateTotalPrice();
-        updateProductQuantity(itemID, newQuantity);        
+        updateProductQuantity(itemID, newQuantity);
     });
 
     //reduce product
@@ -129,16 +127,17 @@ $this->breadcrumbs = array(
         $("#quantity-" + itemID).val(newQuantity);
         $("#total-" + itemID).text($.number(newTotalPrice));
         reCalculateTotalPrice();
-        updateProductQuantity(itemID, newQuantity); 
+        updateProductQuantity(itemID, newQuantity);
     });
-    
+
     //update product's quantity in shopping cart
-    function updateProductQuantity(pid, qty){
-        var url = "<?php echo App()->controller->createUrl('order/ajaxUpdateProductCartQty'); ?>/pid/"+pid+"/qty/"+qty;
+    function updateProductQuantity(pid, qty) {
+        var url = "<?php echo App()->controller->createUrl('order/ajaxUpdateProductCartQty'); ?>/pid/" + pid + "/qty/" + qty;
         $.ajax({
             url: url,
             type: "post",
-            success: function(){}
+            success: function () {
+            }
         });
     }
 
@@ -177,22 +176,22 @@ $this->breadcrumbs = array(
             }
         });
     });
-    
+
     //check out
-    $("#checkout").on('click', function(){
+    $("#checkout").on('click', function () {
         Cookies.set('returnUrl', $(location).attr('href'));
         $(location).attr('href', "<?php echo App()->controller->createUrl("/order/checkOut"); ?>");
     })
 
 
     //remove all commas form number
-    function priceFormat(price){
-        var p = parseFloat(price.replace(/\,/g,''));
+    function priceFormat(price) {
+        var p = parseFloat(price.replace(/\,/g, ''));
         return p;
     }
-    
+
     function reCalculateTotalPrice() {
-        var prices = $("p.cart_total_price"); 
+        var prices = $("p.cart_total_price");
 //        console.log(prices);
         var total = 0;
         prices.each(function () {

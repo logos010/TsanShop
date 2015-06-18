@@ -63,7 +63,7 @@ class UDate {
         return $stringdate;
     }
 
-    public function getCurrentDate($type = 'simple') {
+    public static function getCurrentDate($type = 'simple') {
         if ($type == 'simple')
             return date('Y-m-d');
         elseif ($type == 'full')

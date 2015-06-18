@@ -1,4 +1,4 @@
-<?php    
+<?php
 $this->breadcrumbs = array(
     'Sản phẩm'
 );
@@ -6,55 +6,83 @@ $this->breadcrumbs = array(
 
 <section>
     <!--Products grid -->
-    <div class="catalogue-container">
-        <div class="catalogue-banner">
-            <a href="Promotions.html#2">
-                <img src="<?php echo App()->theme->baseUrl; ?>/images/banner/ck-product-catalogue-standard-delivery-intl-7-apr.png" border="0"/>
-            </a>
-        </div>
-        <div class="spacer2"></div>
-
-        <!-- FILTER PRODUCT-->
-        <div class="filter-container">
-            <div class="filter-dropdown" style="visibility: visible;">
-                <form id="productFilterForm" name="productFilterForm" action="http://www.charleskeith.com/INTLStore/CK/ASM/New-Arrivals/Shoes" method="POST">
-                    <!-- Multiselect here-->
-                </form>
+    <div class="col-m-on">
+        <div class="in-line">
+            <div class="para-all">
+                <h3>ĐỢT HÀNG MỚI NHẤT</h3>
+                <p>Thỏa sức xem hàng tại gian hàng này.</p>
             </div>
 
-            <div class="total-products right" style="text-transform:none; float:right;">
-                <span id="total" style="display: none">15</span><span id="new-total"><?php echo $totalProducts; ?></span> Item(s)
+            <!-- START LOAD PRODUCTS -->
+            <div class="lady-on">
+                <?php foreach ($products as $k => $v): $img = str_replace('original', 'medium', $v->image); ?>
+                    <div class="col-md-4 you-men">
+                        <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>"><img class="img-responsive pic-in" src="<?php echo $img; ?>" height="280" alt="<?php echo $v->name; ?>" ></a>
+                        <?php if ($v->discount != 0): ?>
+                            <div class=" you-onto">
+                                <span>15<label>%</label></span>
+                                <small>off</small>
+                            </div>
+                        <?php endif; ?>
+                        <p><?php echo $v->name; ?></p>
+                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>  | <label class="cat-in"> </label> <a href="#">Đặt mua</a></span>
+                    </div>
+                <?php endforeach; ?>
+                <div class="clearfix"> </div>
             </div>
-            <div class="clear"></div>
-        </div>
-        <!-- END OF FILTER PRODUCT -->
-        <div class="spacer"></div>        
+            <!-- END LOAD PRODUCTS-->
 
-        <div class="equalize" id="equalize" data-equal="div" style="overflow:visible; width:98%; padding:0 1%; margin:auto;">
-            <?php foreach ($products as $k => $v): ?>
-                <div class="catalogue-itembox" style="width: 27.3%; padding: 3%; height:310px; margin-top: 3.5em">
-                    <div class="item-product-img">
-                        <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">                        
-                            <img src="<?php echo BASE_URL . "/" . $v->image; ?>" border="0" class="product-img">
-                        </a>                    
-                        <br>
-                    </div>
-                    <div class="item-desc">
-                        <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">
-                            <!--<div class="product-name"><?php echo $v->name; ?></div>-->
-                            <span><strong><?php echo $v->name; ?></strong></span>
-                            <div class="clear2"></div><span> CK1-70380433</span> 
-                        </a>
-                        <div class="clear2"></div>
-                        <?php echo ($v->discount != 0) ? $v->isProductDiscounted($v) : "<span class='product-price'>" . number_format($v->price, 0, "", ",") . "</span><sup> đ</sup>"; ?>
-                        <div class="clear2"></div>
-                        <div class="item-label">NEW </div>
-                    </div>
-                    <div class="clear"></div>
+            <!-- START OTHER PRODUCTS-->
+            <div class="lady-in-on">
+                <div class="buy-an">
+                    <h3>OTHER PRODUCTS</h3>
+                    <p>Check our all latest products in this section.</p>
                 </div>
-            <?php endforeach; ?>
+                <ul id="flexiselDemo1">	
+                    <?php foreach ($otherProducts as $k => $v): ?>
+                        <li><a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">
+                                <img class="img-responsive women" src="<?php echo $v->image; ?>" width="240" alt="<?php echo $v->name ?>"></a>
+                            <div class="hide-in">
+                                <p><?php echo $v->name ?></p>
+                                <span><?php echo number_format($v->price, 0, '', ',') ?>  |  <a href="#">Mua ngay</a></span>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+
+                <!-- SCRIPT OTHER PRODUCTS -->
+                <script type="text/javascript">
+                    $(window).load(function () {
+                        $("#flexiselDemo1").flexisel({
+                            visibleItems: 4,
+                            animationSpeed: 1000,
+                            autoPlay: true,
+                            autoPlaySpeed: 3000,
+                            pauseOnHover: true,
+                            enableResponsiveBreakpoints: true,
+                            responsiveBreakpoints: {
+                                portrait: {
+                                    changePoint: 480,
+                                    visibleItems: 1
+                                },
+                                landscape: {
+                                    changePoint: 640,
+                                    visibleItems: 2
+                                },
+                                tablet: {
+                                    changePoint: 768,
+                                    visibleItems: 3
+                                }
+                            }
+                        });
+
+                    });
+                </script>
+                <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.flexisel.js"></script>                    
+                <!-- END SCRIPT OTHER PRODUCTS-->
+            </div>
+            <!-- END OTHER PRODUCTS-->
         </div>
-    </div>
-</div>
-<!--End of product grid-->
+    </div> <!-- WRAPPER PRODUCTS-->
+    <!-- END PRODUCT GRID-->
 </section>

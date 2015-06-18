@@ -5,13 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Fashion Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-        <link href="<?php echo App()->theme->baseUrl; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />        
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<?php echo App()->theme->baseUrl; ?>/js/jquery.min.js"></script>
         <!-- Custom Theme files -->
         <!--theme-style-->
-        <link href="<?php echo App()->theme->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />	
+        <link href="<?php echo App()->theme->baseUrl; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="<?php echo App()->theme->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />        
         <!--//theme-style-->        
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <!--fonts-->
@@ -19,6 +19,7 @@
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
         <!--//fonts-->
+        <script src="<?php echo App()->theme->baseUrl; ?>/js/js.cookie.js"></script>
     </head>
     <body> 
         <!--header-->
@@ -34,18 +35,40 @@
                         </ul>
                     </div>
                     <div class="header-grid-right">
-                        <a href="#" class="sign-in">Sign In</a>
-                        <form>
-                            <input type="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {
+                        <?php if(App()->user->isGuest): ?>
+                        <a href="#" class="sign-in">Đăng nhập</a>
+                        <form action="user/login">
+                            <input type="text" value="Tên truy cập" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
                                     }">
-                            <input type="text" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
+                            <input type="password" value="Mật khẩu" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
                                     }">
                             <input type="submit" value="Go" >
                         </form>
                         <label>|</label>
-                        <a href="signup.html" class="sign-up">Sign Up</a>
+                        <a href="<?php echo App()->controller->createUrl('user/registration'); ?>" class="sign-up">Đăng Ký</a>
+                        <?php else: ?>
+                        <div class="header-account">
+                            <ul>
+                                <li>
+                                    <a href="#" class="scroll">
+                                        <img src="<?php echo App()->theme->baseUrl ?>/images/account.png" alt="Đơn hàng" height="18"/>
+                                        <?php echo Yii::app()->user->name;  ?></a>                                    
+                                </li>
+                                <li>
+                                    <a href="#" class="scroll">
+                                        <img src="<?php echo App()->theme->baseUrl ?>/images/invoice.png" alt="Đơn hàng" height="20" />
+                                        Đơn hàng</a>                                    
+                                </li>
+                                <li>
+                                    <a href="<<?php echo App()->createUrl('/user/logout'); ?>" class="scroll">
+                                        <img src="<?php echo App()->theme->baseUrl ?>/images/sign_out.png" alt="Đơn hàng" height="24" />
+                                        Thoát</a>
+                                </li>
+                            </ul>
+                        </div>                        
+                        <?php endif; ?>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -53,7 +76,7 @@
             <div class="container">
                 <div class="header-bottom">			
                     <div class="logo">
-                        <a href="index.html"><img src="images/logo.png" alt=" " ></a>
+                        <a href="<?php echo App()->createUrl('/'); ?>"><img src="<?php echo App()->theme->baseUrl; ?>/images/logo.png" alt=" " ></a>
                     </div>
                     <div class="ad-right">
                         <img class="img-responsive" src="images/ad.png" alt=" " >

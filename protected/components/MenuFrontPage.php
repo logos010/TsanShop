@@ -17,7 +17,6 @@ class MenuFrontPage extends CWidget{
 
         $this->render('Menu', array(
            'menu' => $menu,
-           'news' => $news
         ));
     }
 }

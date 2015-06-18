@@ -9,61 +9,141 @@ $this->menu = array(
 );
 
 //Multiple Select Dropdown -->
-scriptFile(themeUrl() . "/js/jquery-ui-1.8.23.custom.min.js", CClientScript::POS_BEGIN);
-scriptFile(themeUrl() . "/js/mainnav-smoothScrolling.js", CClientScript::POS_BEGIN);
-scriptFile(themeUrl() . "/js/jQuery.equalHeights.js", CClientScript::POS_BEGIN);
+//scriptFile(themeUrl() . "/js/jquery-ui-1.8.23.custom.min.js", CClientScript::POS_BEGIN);
+//scriptFile(themeUrl() . "/js/mainnav-smoothScrolling.js", CClientScript::POS_BEGIN);
+//scriptFile(themeUrl() . "/js/jQuery.equalHeights.js", CClientScript::POS_BEGIN);
 ?>
 
-<div id="static-content">   
-    <?php foreach ($terms as $k => $v): ?>
-                    <!--<a href="<?php echo App()->controller->createUrl('product/cate/', array('tid' => $v->id)); ?>"><?php echo $v->name; ?></a><br/>-->
-    <?php endforeach; ?>
+<div class="women-in">
+    <div class="col-md-9 col-d">
+        <div class="banner">
+            <div class="banner-matter">
+                <label>Collection</label>
+                <h2>Summmer</h2>
+                <p>Helping you look cool</p>
 
-
-    <!-- slide -->
-    <div style="width:960px;float:left;margin-bottom:5px;margin-top:8px;">
-        <div id="delivery-destination" style="width:466px;float:left;">
-            <div id="sliderhome">
-                <ul class="bxslider">
-                    <?php foreach ($promote as $k => $v): ?>   
-                        <li>
-                            <a href="<?php echo App()->controller->createUrl('product/detail/', array('pid' => $v->id)) ?>">
-                                <img src="<?php echo BASE_URL . "/" . $v->image; ?>" border="0" alt="<?php echo $v->name; ?>" width="476" height="608">
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+            </div>
+            <div class="you">
+                <span>40<label>%</label></span>
+                <small>off</small>
+            </div>			
+            <p  class="para-in">Some text regarding the featured product.</p>
+        </div>
+        <!---->
+        <div class="in-line">
+            <div class="para-an">
+                <h3>LATEST  ARRIVALS</h3>
+                <p>Check our all latest products in this section.</p>
+            </div>
+            <div class="lady-in">
+                <?php
+                $i = 1;
+                $last = null;
+                foreach ($products as $k => $v):
+                    if ($i%3==0) {
+                        $last = ' para-grid';                        
+                    }
+                ?>
+                    <div class="col-md-4 you-para <?php echo $last; ?>">
+                        <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">
+                            <img class="img-responsive pic-in" src="<?php echo $v->image; ?>" alt=" " >
+                        </a>
+                        <?php if ($v->discount != 0): ?>
+                            <div class="you-in">
+                                <span>15<label>%</label></span>
+                                <small>off</small>
+                            </div>
+                        <?php endif; ?>
+                        <p><?php echo $v->name; ?></p>
+                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>| <label class="cat-in"> </label> <a href="#">Mua ngay </a></span>
+                    </div>
+                <?php                 
+                $last = ($i==3) ? null : $last;
+                $i++;
+                endforeach; 
+                ?>
+                <div class="clearfix"> </div>
             </div>
         </div>
-
-        <!--Promotion 2-->
-        <div id="home-shoes" style="width:476px;float:right;">
-            <?php $this->widget('application.components.PromotionRightBottom'); ?>
+    </div>
+    <div class="col-md-3 col-m-left">
+        <div class="in-left">				
+            <p class="code">Cool COLLECTIONS</p>		
+            <div class="cool">		
+            </div>		
         </div>
-
-        <!--Promotion 3-->
-        <div style="width:476px;float:right;margin-top:8px;">
-            <?php $this->widget('application.components.PromotionRightBottom', array('position' => 2)); ?>
-            <?php $this->widget('application.components.PromotionRightBottom', array('position' => 3)); ?>
-            <img width="0" height="0" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        <?php foreach ($promote as $k => $v): ?>
+        <div class="discount">
+            <a href="#"><img class="img-responsive pic-in" src="<?php echo $v->image ?>" alt="" ></a>		
+            <p class="no-more">Exclusive <b>discount</b> <span>Womens wear</span></p>					
+            <a href="#" class="know-more">know more</a>
+        </div>
+        <?php endforeach; ?>
+        
+        <div class="twitter-in">
+            <h5>TWITTER  UPDATES</h5>
+            <span class="twitter-ic">	</span>
+            <div class="up-date">
+                <p>@suniljoshi Looks like nice and dicent design</p>
+                <a href="#">http://bit.ly/sun</a>
+                <p class="ago">About 1 hour ago via twitterfeed</p>
+            </div>
+            <div class="up-date">
+                <p>@suniljoshi Looks like nice and dicent design</p>
+                <a href="#">http://bit.ly/sun</a>
+                <p class="ago">About 1 hour ago via twitterfeed</p>
+            </div>
+            <a href="#" class="tweets">More Tweets</a>
+            <div class="clearfix"> </div>
         </div>
     </div>
+    <div class="clearfix"> </div>
+</div>
 
-    
-    <?php $this->widget('application.components.PromotionRightBottom', array('position' => 4)); ?>
-
+<div class="lady-in-on">
+    <div class="buy-an">
+        <h3>OTHER PRODUCTS</h3>
+        <p>Check our all latest products in this section.</p>
+    </div>
+    <ul id="flexiselDemo1">
+        <?php foreach ($others as $k => $v): ?>
+        <li>
+            <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">
+                <img class="img-responsive women" src="<?php echo $v->image; ?>" alt="<?php echo $v->name ?>" width="200">
+            </a>
+            <div class="hide-in">
+                <p><?php echo $v->name ?></p>
+                <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>  |  <a href="#">Shop ngay </a></span>
+            </div>
+        </li>
+        <?php endforeach; ?>
+    </ul>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('.bxslider').bxSlider({
-                mode: 'vertical',
-                auto: true,
-                pager: true,
-                controls: false,
-                adaptiveHeight: true,
-                responsive: true,
-                speed: 400,
-                pause: 6000
+        $(window).load(function () {
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 4,
+                animationSpeed: 1000,
+                autoPlay: true,
+                autoPlaySpeed: 3000,
+                pauseOnHover: true,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 2
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 3
+                    }
+                }
             });
+
         });
     </script>
+    <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.flexisel.js"></script>
 </div>

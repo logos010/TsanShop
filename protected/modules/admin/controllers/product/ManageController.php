@@ -167,4 +167,10 @@ class ManageController extends ControllerBase {
         echo UString::toAlias($_POST['Product']['name']);
     }
 
+    public function actionTest(){
+        echo $uri = webroot() ."/upload/".date('Y/m');
+        echo '<br/>';
+        var_dump(is_dir($uri));echo '<br/>';
+        var_dump(mkdir($uri, 0777, true));
+    }
 }

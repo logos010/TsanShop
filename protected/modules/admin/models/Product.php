@@ -8,7 +8,7 @@
 class Product extends ProductBase {
 
     public $cate;
-    
+
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -20,25 +20,26 @@ class Product extends ProductBase {
             Yii::import('application.extensions.helpers.*');
 
             $name = date('Ymdhis') . '.' . strtolower($image->extensionName);
-//            $uri = 'upload/products/' . date('Y/m');
-            $uri =  'upload/' . date('Y/m');
+            $uri =  webroot() . '/upload/' . date('Y/m');
            // $file_path = webroot() . '/' . $uri;
-
+//           echo '<br/>';
             if (!is_dir($uri)) {
-                mkdir($uri . '/original', 0777, true);
-                mkdir($uri . '/medium', 0777, true);                
+                (mkdir($uri . '/original', 0777, true));
+                (mkdir($uri . '/medium', 0777, true));                
                 //mkdir($uri . '/small', 0777, true);
             }
-
             $img = new Image($image->tempName);            
             $img->save($uri . '/original/' . $name);
+//            $img->save(BASE_URL . "/upload/" . date('Y/m') . '/original/' . $name);
             list($width, $height, $type, $attr) = getimagesize($image->tempName);
-            $img->resize(400, 400, Image::WIDTH);
+            $img->resize(360, 480, Image::WIDTH);
             $img->save($uri . '/medium/' . $name);
+//            $img->save(BASE_URL . "/upload/" . date('Y/m') . '/medium/' . $name);
             //$img->resize(253, 253);
             //$img->save($uri . '/small/' . $name);
 
-            $this->image = $uri . '/medium/' . $name;
+//            $this->image = $uri . '/medium/' . $name;
+            $this->image = BASE_URL . "/upload/" . date('Y/m') . '/medium/' . $name;
         }
     }
 
@@ -82,7 +83,7 @@ class Product extends ProductBase {
         return array(
             array('name, price, description, cate', 'required'),
             array('quantity, bought, like, subscripbe, status', 'numerical', 'integerOnly' => true),
-            array('price, wholesale_price, discount, sale_promotion', 'numerical'),
+            array('wholesale_price, discount, sale_promotion', 'numerical'),
             array('name, alias', 'length', 'max' => 150),
             array('uri, image', 'length', 'max' => 255),
             array('sku', 'length', 'max' => 15),

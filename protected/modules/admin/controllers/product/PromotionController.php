@@ -82,9 +82,20 @@ class PromotionController extends ControllerBase {
             if (!is_dir($uri)) {
                 mkdir($uri . '/original', 0777, true);
             }
+            
+            //check position, if it is set as 1, create image size with 639x315
+            if ($model->position == 1){
+                if (!is_dir($uri . "/promotion_banner")){
+                    mkdir($uri . '/promotion_banner', 0777, true);
+                }
+            }
 
             $img = new Image($image->tempName);
             $img->save($uri . '/original/' . $name);
+            
+            //resize image to banner size
+            $img->resize(639, 315, Image::WIDTH);
+            $img->save($uri . '/promotion_banner/' . $name);
             
             $model->image = $uri . '/original/' . $name;
         }

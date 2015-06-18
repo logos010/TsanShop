@@ -12,7 +12,9 @@ class LoginController extends ControllerBase {
     /**
      * Displays the login page
      */
-    public function actionLogin() {        
+    public function actionLogin() {
+        scriptFile(App()->theme->baseUrl."/js/validator.min.js");
+        
         if (Yii::app()->user->isGuest) {
             $model = new UserLogin;
             
@@ -38,9 +40,10 @@ class LoginController extends ControllerBase {
             // display the login form
             $this->render('/user/login', array('model' => $model));
         }
-        else    
+        else{
 //            $this->redirect(Yii::app()->session['userView'.App()->user->id.'returnURL']);        
-            $this->redirect(Yii::app()->controller->module->returnUrl);
+            $this->redirect(Yii::app()->controller->module->returnUrl[0]);
+        }
     }
 
     private function lastViset() {

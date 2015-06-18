@@ -51,7 +51,8 @@ $this->breadcrumbs = array(
                     'name' => 'image',
                     'filter' => false,
                     'type' => 'html',
-                    'value' => 'CHtml::image(BASE_URL . "/" . $data->image, "", array("width" => "85"))',
+//                    'value' => 'CHtml::image(BASE_URL . "/" . $data->image, "", array("width" => "85"))',
+                    'value' => 'CHtml::image($data->image, "", array("width" => "85"))',
                     'htmlOptions' => array(
                         'width' => '100',
                         'align' => 'center'

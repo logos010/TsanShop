@@ -1,7 +1,7 @@
 <?php $this->beginContent('//layouts/main'); ?>
-<div class="container">
-    <div id="user" class="well">
-        <?php echo $content; ?>
-    </div><!-- content -->
-</div>
+
+<div id="user" class="well">
+    <?php echo $content; ?>
+</div><!-- content -->
+
 <?php $this->endContent(); ?>

@@ -316,7 +316,7 @@ class Image {
 	 * @param   boolean  keep or discard image process actions
 	 * @return  object
 	 */
-	public function save($new_image = FALSE, $chmod = 0644, $keep_actions = FALSE)
+	public function save($new_image = FALSE, $chmod = 0777, $keep_actions = FALSE)
 	{
 		// If no new image is defined, use the current image
 		empty($new_image) and $new_image = $this->image['file'];
@@ -336,7 +336,7 @@ class Image {
 			if ($chmod !== FALSE)
 			{
 				// Set permissions
-				chmod($new_image, $chmod);
+//				chmod($new_image, $chmod);
 			}
 		}
 		
