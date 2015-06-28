@@ -2673,3 +2673,7 @@ label#shopping-item{
 }
 
 section{margin-top: 1em}
+
+/*order status*/
+span.pending{color: red;}
+span.done{color: green}
