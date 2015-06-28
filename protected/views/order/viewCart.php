@@ -14,94 +14,99 @@ $this->breadcrumbs = array(
 <h2>Thông tin đơn hàng</h2>
 <br/>
 
-<section id="cart_items">
-    <div class="table-responsive cart_info">
-        <form id="editForm" name="shoppingBagView" > 
-            <table class="table table-striped">
-                <thead>
-                    <tr class="cart_menu">
-                        <th class="image">Sản phẩm</th>
-                        <th class="description"></th>
-                        <th class="price">Giá thành</th>
-                        <th class="quantity">Số lượng</th>
-                        <th class="total">Tổng</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($items as $item): ?>
-                        <tr id="itemRow-<?php echo $item->id ?>">
-                            <td class="cart_product">
-                                <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $item->id)); ?>">
-                                    <img src="<?php echo $item->image; ?>" width="80" alt="<?php echo $item->name ?>"></a>
+<div class="row">
+    <section id="cart_items">
+        <div class="table-responsive cart_info">
+            <form id="editForm" name="shoppingBagView" > 
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="cart_menu">
+                            <th class="image">Sản phẩm</th>
+                            <th class="description"></th>
+                            <th class="price">Giá thành</th>
+                            <th class="quantity">Số lượng</th>
+                            <th class="total">Tổng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($items as $item): ?>
+                            <tr id="itemRow-<?php echo $item->id ?>">
+                                <td class="cart_product">
+                                    <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $item->id)); ?>">
+                                        <img src="<?php echo $item->image; ?>" width="80" alt="<?php echo $item->name ?>"></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href=""><?php echo $item->name ?></a></h4>
+                                    <p>Web ID: 1089772</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p id="price-<?php echo $item->id ?>"><?php echo number_format($item->price, 0, '.', ','); ?></p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                        <a class="cart_quantity_up" href="javascript:void(0)" id="add-<?php echo $item->id ?>"> + </a>
+                                        <input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $item->getQuantity(); ?>" id="quantity-<?php echo $item->id ?>" autocomplete="off" size="2">
+                                        <a class="cart_quantity_down" href="javascript:void(0)" id="sub-<?php echo $item->id ?>"> - </a>
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price" id="total-<?php echo $item->id ?>"><?php echo number_format($item->getSumPrice(), 0, '.', ','); ?></p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="cart_quantity_delete" href="javascript:void(0)" id="remove-<?php echo $item->id ?>"><i class="fa fa-times"></i></a>
+                                </td>
+                            </tr>                        
+                        <?php endforeach; ?>                                    
+                        <tr>
+                            <td colspan="4">&nbsp;</td>
+                            <td colspan="2">
+                                <table class="table table-condensed total-result">
+                                    <tr>
+                                        <td>Tổng đơn hàng</td>
+                                        <td id="total-without-tax"><?php echo number_format($totalPrice, 0, '.', ','); ?> <sup>đ</sup></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thuế</td>
+                                        <td>$0</td>
+                                    </tr>
+                                    <tr class="shipping-cost">
+                                        <td>Phí vận chuyển</td>
+                                        <td>Free</td>										
+                                    </tr>
+                                    <tr>
+                                        <td>Tổng</td>
+                                        <td id="final-total"><strong><span><?php echo number_format($totalPrice, 0, '.', ','); ?> <sup>đ</sup></span></strong></td>
+                                    </tr>
+                                </table>
                             </td>
-                            <td class="cart_description">
-                                <h4><a href=""><?php echo $item->name ?></a></h4>
-                                <p>Web ID: 1089772</p>
-                            </td>
-                            <td class="cart_price">
-                                <p id="price-<?php echo $item->id ?>"><?php echo number_format($item->price, 0, '.', ','); ?></p>
-                            </td>
-                            <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                    <a class="cart_quantity_up" href="javascript:void(0)" id="add-<?php echo $item->id ?>"> + </a>
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $item->getQuantity(); ?>" id="quantity-<?php echo $item->id ?>" autocomplete="off" size="2">
-                                    <a class="cart_quantity_down" href="javascript:void(0)" id="sub-<?php echo $item->id ?>"> - </a>
-                                </div>
-                            </td>
-                            <td class="cart_total">
-                                <p class="cart_total_price" id="total-<?php echo $item->id ?>"><?php echo number_format($item->getSumPrice(), 0, '.', ','); ?></p>
-                            </td>
-                            <td class="cart_delete">
-                                <a class="cart_quantity_delete" href="javascript:void(0)" id="remove-<?php echo $item->id ?>"><i class="fa fa-times"></i></a>
-                            </td>
-                        </tr>                        
-                    <?php endforeach; ?>                                    
-                    <tr>
-                        <td colspan="4">&nbsp;</td>
-                        <td colspan="2">
-                            <table class="table table-condensed total-result">
-                                <tr>
-                                    <td>Tổng đơn hàng</td>
-                                    <td id="total-without-tax"><?php echo number_format($totalPrice, 0, '.', ','); ?> <sup>đ</sup></td>
-                                </tr>
-                                <tr>
-                                    <td>Thuế</td>
-                                    <td>$0</td>
-                                </tr>
-                                <tr class="shipping-cost">
-                                    <td>Phí vận chuyển</td>
-                                    <td>Free</td>										
-                                </tr>
-                                <tr>
-                                    <td>Tổng</td>
-                                    <td id="final-total"><strong><span><?php echo number_format($totalPrice, 0, '.', ','); ?> <sup>đ</sup></span></strong></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>                    
-                </tbody>
-            </table>
-        </form>
-    </div>
+                        </tr>                    
+                    </tbody>
+                </table>
+            </form>
+        </div>
 
-    <?php if (App()->shoppingCart->getCount()): ?>
-        <input name="button" class="btn btn-primary pull-right" id="checkout" value="Xác nhận" type="submit">
-    <?php endif; ?>
+        <?php if (App()->shoppingCart->getCount()): ?>
+            <input name="button" class="btn btn-primary pull-right" id="checkout" value="Xác nhận" type="submit">
+        <?php endif; ?>
 
-    <div id="msg">
-        <div class="alert alert-info" role="alert">                
-            <strong>Giỏhàng</strong> của bạn đang trống.
-        </div>                                                
-    </div>    
-</section>
-
+        <div id="msg">
+            <div class="alert alert-info" role="alert">                
+                <strong>Giỏ hàng</strong> của bạn đang trống.
+            </div>                                                
+        </div>    
+    </section>
+</div>
 <script type="text/javascript">
-    $().ready(function(){
+    $().ready(function () {
         //no menu bar
         $("div.header-bottom-bottom").addClass('hidden');
+
+        //screen height
+        var screenHeight = $( document ).height();
+        $(".row").css('height', screenHeight - 330);
     });
-    
+
     var itemInCart = <?php echo App()->shoppingCart->getCount(); ?>;
     if (itemInCart === 0) {
         $("#msg").show();

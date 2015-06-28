@@ -38,7 +38,7 @@ $this->menu = array(
                     }
                     ?>
                     <div class="col-md-4 you-para <?php echo $last; ?>">
-                        <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">
+                        <a href="<?php echo App()->createUrl('product/detail', array('pid' => $v->id)); ?>">
                             <img class="img-responsive pic-in" src="<?php echo $v->image; ?>" alt=" " >
                         </a>
                         <?php if ($v->discount != 0): ?>
@@ -67,7 +67,7 @@ $this->menu = array(
         $promotion_two = UtiService::getPromotion(2);
         ?>
         <div class="in-left">	
-            <a href="<?php echo $promotion_two->url; ?>">
+            <a href="<?php echo App()->controller->createUrl($promotion_two->url); ?>">
                 <img src="<?php echo $promotion_two->image ?>" alt="<?php echo $promotion_two->alias ?>" />
             </a>
         </div>

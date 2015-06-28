@@ -85,12 +85,12 @@ scriptFile(themeUrl() . "/js/validator.min.js", CClientScript::POS_BEGIN);
     $("select#district").on('change', function () {
         var did = $(this).val();
         $.ajax({
-            url: "<?php echo App()->controller->createUrl('loadWard'); ?>",
+            url: "<?php echo App()->controller->createUrl('order/loadWard'); ?>",
             type: "post",
             data: "did=" + did,
             success: function (data) {
                 $("#ward").html(data);
-            }
+            },
         });
     });
 

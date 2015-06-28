@@ -244,8 +244,8 @@ $original = str_replace('medium', 'original', $product->image);
             type: 'post',
             data: "pid=<?php echo $product->id; ?>&quantity=" + q + "&size=" + s,
             success: function (items) {
-                //$("#shopping-item").html("(" + items + ")");
-                console.log(items);
+                $("#shopping-item").html("(" + items + ")");
+                
             },
             complete: function () {
                 bootbox.alert("'<strong>" + productName + "</strong>' của bạn đã được đưa vào giỏ hàng.");

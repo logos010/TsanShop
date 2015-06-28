@@ -4,7 +4,6 @@ $this->breadcrumbs = array(
 );
 ?>
 
-
 <?php if (count($myOrders) != 0 ): ?>
 <div class="row">
     <div class="col-sm-12">
@@ -26,7 +25,7 @@ $this->breadcrumbs = array(
                         <td><?php echo $v->purchase_id; ?></td>
                         <td><?php echo $v->create_time; ?></td>
                         <td><?php echo number_format($v->grand_total, 0, '', ','); ?></td>
-                        <td><?php echo $v->is_paid; ?></td>
+                        <td><?php echo OrderService::orderStatus($v->is_paid); ?></td>
                         <td>
                             <!--<a href="javascript:void(0)" class="viewOrderDetail" id="order-<?php echo $v->order_id ?>">View Detail</a>-->
                             <span class="viewOrderDetail glyphicon glyphicon-plus" aria-hidden="true" id="order-<?php echo $v->order_id ?>" ></span>    
@@ -39,10 +38,9 @@ $this->breadcrumbs = array(
     </div>
 </div>
 <?php else: ?>
-
-<div>
+<div class="row">
     <div class="alert alert-info">
-        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <a href="#" class="close">&times;</a>
         <strong>Thông tin</strong> mua hàng của bạn đang trống.
     </div>                                                
 </div>
@@ -57,11 +55,23 @@ table.order_detail tr td {padding:10px; width: 150px}
 
 </style>
 
-<script type="text/javascript">
-    $(".viewOrderDetail").click(function(){
+<script type="text/javascript">    
+    $().ready(function(){
+        var screenHeight = $( document ).height();
+        //no menu
+        $("div.header-bottom-bottom").addClass('hidden');
+        
+        //screen height
+        $(".row").css('height', screenHeight - 290);
+    });
+    
+    $(".viewOrderDetail").click(function(){        
         var orderID = $(this).attr("id").substring(6,7);
         var detailBlock = $(".orderDetail-"+orderID);
-        
+console.log(orderID);        
+console.log(detailBlock);
+console.log(detailBlock.is(":visible"));
+
         if (detailBlock.is(":visible")){
             detailBlock.addClass('hidden');
             

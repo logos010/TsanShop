@@ -46,9 +46,8 @@ class OrderController extends ControllerBase {
         scriptFile(App()->theme->baseUrl . "/js/validator.min.js");
         
         $user = User::model()->findByPk($cid);
-        if (!is_null($user)) {            
+        if (!App()->user->isGuest) {            
             if (isset($_POST['order'])) {
-                var_dump($session['validOrder']);
                 $totalOrder = intval(Order::model()->count());
                 $purchaseID = OrderService::generate_numbers(995 + $totalOrder, 1, 10);                
                 
@@ -59,9 +58,9 @@ class OrderController extends ControllerBase {
                 $order->invoice_total = App()->shoppingCart->getCost();
                 $order->shipping_fee = 0;
                 $order->grand_total = App()->shoppingCart->getCost();
+                $order->command = $_POST['message'];
                 $order->save();
                 
-
                 $items = App()->shoppingCart->getPositions();
                 foreach ($items as $item) {
                     $detail = new OrderDetail;
@@ -93,12 +92,16 @@ class OrderController extends ControllerBase {
     }
     
     public function actionMyOrders(){
+        cssFile('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+        
         $user = App()->user->id;
         $orders = Order::model()->findAll(array(
             'condition' => 'customer_id = :cid',
             'params' => array(
                 ':cid' => $user,
-            )
+            ),
+            'order' => 'create_time DESC',
+            'limit' => '15'
         ));
         
         $this->render('myOrders', array(
