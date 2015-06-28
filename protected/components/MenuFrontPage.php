@@ -1,6 +1,7 @@
 <?php
 
 class MenuFrontPage extends CWidget{
+    public $menuCate = null;
     
     public function run(){
         $criteria = new CDbCriteria();
@@ -17,6 +18,7 @@ class MenuFrontPage extends CWidget{
 
         $this->render('Menu', array(
            'menu' => $menu,
+           'menuCate' => $this->menuCate,
         ));
     }
 }

@@ -6,22 +6,26 @@ $this->breadcrumbs = array(
 ?>
 
 <style>
-    #msg{display:  none}
+    #msg{display:  none}    
 </style>
 <?php scriptFile(themeUrl() . "/js/jquery.number.js", CClientScript::POS_BEGIN); ?>
+
+<br/>
+<h2>Thông tin đơn hàng</h2>
+<br/>
 
 <section id="cart_items">
     <div class="table-responsive cart_info">
         <form id="editForm" name="shoppingBagView" > 
-            <table class="table table-condensed">
+            <table class="table table-striped">
                 <thead>
                     <tr class="cart_menu">
-                        <td class="image">Sản phẩm</td>
-                        <td class="description">Tên</td>
-                        <td class="price">Giá thành</td>
-                        <td class="quantity">Số lượng</td>
-                        <td class="total">Tổng</td>
-                        <td></td>
+                        <th class="image">Sản phẩm</th>
+                        <th class="description"></th>
+                        <th class="price">Giá thành</th>
+                        <th class="quantity">Số lượng</th>
+                        <th class="total">Tổng</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,6 +97,11 @@ $this->breadcrumbs = array(
 </section>
 
 <script type="text/javascript">
+    $().ready(function(){
+        //no menu bar
+        $("div.header-bottom-bottom").addClass('hidden');
+    });
+    
     var itemInCart = <?php echo App()->shoppingCart->getCount(); ?>;
     if (itemInCart === 0) {
         $("#msg").show();

@@ -1,5 +1,5 @@
 <?php
-Yii::import('application.modules.admiin.model.*');
+//Yii::import('application.modules.admiin.model.*');
 
 class SearchController extends ControllerBase{
     

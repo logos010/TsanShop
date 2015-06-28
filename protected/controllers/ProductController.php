@@ -27,17 +27,18 @@ class ProductController extends ControllerBase {
         
         //get promotion products
         $criteria = new CDBCriteria();
-        $criteria->condition = "promote = 1 AND status = 1";
-        $criteria->order = "RAND()";
+//        $criteria->condition = "promote = 1 AND status = 1";
+//        $criteria->order = "RAND()";
+        $criteria->condition = "position NOT IN (1,2) AND status = 1";
         $criteria->limit = 2;
-        $promote = Product::model()->findAll($criteria);
+        $promote = Promotion::model()->findAll($criteria);
                 
         $this->render('index', array(
             'products' => $products,
             'others' => $otherProducts,
             'promote' => $promote
         ));
-    }
+    }    
 
     /**
      * Performs the AJAX validation.

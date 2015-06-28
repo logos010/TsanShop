@@ -24,14 +24,13 @@ class LoginController extends ControllerBase {
 //                var_dump(Yii::app()->user->returnUrl);
 //                var_dump(Yii::app()->controller->module->returnUrl); exit();
                 // validate user input and redirect to previous page if valid
-                
                 if ($model->validate()) {
-                    $this->lastViset();
+                    $this->lastVisit();
                     if (strpos(Yii::app()->user->returnUrl, '/index.php') !== false){
-                        $returnUrl = isset(Yii::app()->request->cookies['returnUrl']) ? Yii::app()->request->cookies['returnUrl']->value : '';
+                        $returnUrl = isset(App()->request->cookies['returnUrl']) ? App()->request->cookies['returnUrl']->value : App()->createUrl('/');
                         $this->redirect($returnUrl);
                     }else{
-                        $returnUrl = isset(Yii::app()->request->cookies['returnUrl']) ? Yii::app()->request->cookies['returnUrl']->value : '';
+                        $returnUrl = isset(App()->request->cookies['returnUrl']) ? App()->request->cookies['returnUrl']->value : App()->createUrl('/');
                         $this->redirect($returnUrl);
                     }
                 }
@@ -46,7 +45,7 @@ class LoginController extends ControllerBase {
         }
     }
 
-    private function lastViset() {
+    private function lastVisit() {
         $lastVisit = User::model()->notsafe()->findByPk(Yii::app()->user->id);
         $lastVisit->lastvisit = time();
         $lastVisit->save();

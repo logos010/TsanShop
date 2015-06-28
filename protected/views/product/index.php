@@ -16,18 +16,11 @@ $this->menu = array(
 
 <div class="women-in">
     <div class="col-md-9 col-d">
+        <?php $promotion_one = UtiService::getPromotion(1); ?>
         <div class="banner">
-            <div class="banner-matter">
-                <label>Collection</label>
-                <h2>Summmer</h2>
-                <p>Helping you look cool</p>
-
-            </div>
-            <div class="you">
-                <span>40<label>%</label></span>
-                <small>off</small>
-            </div>			
-            <p  class="para-in">Some text regarding the featured product.</p>
+            <a href="<?php echo App()->controller->createUrl($promotion_one->url); ?>">
+                <img src="<?php echo $promotion_one->image ?>" alt="<?php echo $promotion_one->alias ?>" />
+            </a>
         </div>
         <!---->
         <div class="in-line">
@@ -40,10 +33,10 @@ $this->menu = array(
                 $i = 1;
                 $last = null;
                 foreach ($products as $k => $v):
-                    if ($i%3==0) {
-                        $last = ' para-grid';                        
+                    if ($i % 3 == 0) {
+                        $last = ' para-grid';
                     }
-                ?>
+                    ?>
                     <div class="col-md-4 you-para <?php echo $last; ?>">
                         <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">
                             <img class="img-responsive pic-in" src="<?php echo $v->image; ?>" alt=" " >
@@ -55,34 +48,42 @@ $this->menu = array(
                             </div>
                         <?php endif; ?>
                         <p><?php echo $v->name; ?></p>
-                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>| <label class="cat-in"> </label> <a href="#">Mua ngay </a></span>
+                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>| <label class="cat-in"> </label> 
+                            <a href="javascript:void(0)" class="add-to-cart" id="<?php echo $v->id; ?>">Mua ngay</a>
+                        </span>
                     </div>
-                <?php                 
-                $last = ($i==3) ? null : $last;
-                $i++;
-                endforeach; 
+                    <?php
+                    $last = ($i == 3) ? null : $last;
+                    $i++;
+                endforeach;
                 ?>
-                <div class="clearfix"> </div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <div class="col-md-3 col-m-left">
-        <div class="in-left">				
-            <p class="code">Cool COLLECTIONS</p>		
-            <div class="cool">		
-            </div>		
+        <?php
+        //get promotion products
+        $promotion_two = UtiService::getPromotion(2);
+        ?>
+        <div class="in-left">	
+            <a href="<?php echo $promotion_two->url; ?>">
+                <img src="<?php echo $promotion_two->image ?>" alt="<?php echo $promotion_two->alias ?>" />
+            </a>
         </div>
         <?php foreach ($promote as $k => $v): ?>
-        <div class="discount">
-            <a href="#"><img class="img-responsive pic-in" src="<?php echo $v->image ?>" alt="" ></a>		
-            <p class="no-more">Exclusive <b>discount</b> <span>Womens wear</span></p>					
-            <a href="#" class="know-more">know more</a>
-        </div>
+            <div class="discount">
+                <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)) ?>">
+                    <img class="img-responsive pic-in" src="<?php echo $v->image ?>" alt="" >
+                </a>		
+                <p class="no-more">Exclusive <b>discount</b> <span>Womens wear</span></p>					
+                <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)) ?>" class="know-more">know more</a>
+            </div>
         <?php endforeach; ?>
-        
+
         <div class="twitter-in">
             <h5>TWITTER  UPDATES</h5>
-            <span class="twitter-ic">	</span>
+            <span class="twitter-ic"></span>
             <div class="up-date">
                 <p>@suniljoshi Looks like nice and dicent design</p>
                 <a href="#">http://bit.ly/sun</a>
@@ -107,15 +108,15 @@ $this->menu = array(
     </div>
     <ul id="flexiselDemo1">
         <?php foreach ($others as $k => $v): ?>
-        <li>
-            <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">
-                <img class="img-responsive women" src="<?php echo $v->image; ?>" alt="<?php echo $v->name ?>" width="200">
-            </a>
-            <div class="hide-in">
-                <p><?php echo $v->name ?></p>
-                <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>  |  <a href="#">Shop ngay </a></span>
-            </div>
-        </li>
+            <li>
+                <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)); ?>">
+                    <img class="img-responsive women" src="<?php echo $v->image; ?>" alt="<?php echo $v->name ?>" width="200">
+                </a>
+                <div class="hide-in">
+                    <p><?php echo $v->name ?></p>
+                    <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>  |  <a href="#">Shop ngay </a></span>
+                </div>
+            </li>
         <?php endforeach; ?>
     </ul>
     <script type="text/javascript">
@@ -142,7 +143,21 @@ $this->menu = array(
                     }
                 }
             });
+        });
 
+        $("a.add-to-cart").on('click', function () {
+            $.ajax({
+                url: "<?php echo App()->controller->createUrl('/order/addToCart'); ?>",
+                type: 'post',
+                data: "pid="+$(this).attr('id')+"&quantity=1&size=L",
+                success: function (items) {
+                    //$("#shopping-item").html("(" + items + ")");
+                    console.log(items);
+                },
+                complete: function () {
+                    //bootbox.alert("'<strong>Sản phẩm</strong>' của bạn đã được đưa vào giỏ hàng.");
+                }
+            });
         });
     </script>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.flexisel.js"></script>

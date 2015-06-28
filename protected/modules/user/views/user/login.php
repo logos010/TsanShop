@@ -8,9 +8,15 @@
     </div>
 <?php endif; ?>
 
+<h2>Đăng nhập tài khoản</h2>
+<br/>
+
+<?php if(count($model->getErrors()) != 0): ?>
 <div class="alert alert-danger" role="alert">
     <?php echo CHtml::errorSummary($model); ?>
 </div>
+<?php endif; ?>
+
 <section><!--form-->
     <div class="col-md-9">
         <?php

@@ -14,7 +14,8 @@ class OrderController extends ControllerBase {
         Yii::app()->shoppingCart->remove($product->getId());
     }
     
-    public function actionViewCart() {        
+    public function actionViewCart() {
+        cssFile('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
         $shopping = App()->shoppingCart;
 
         $this->render('viewCart', array(

@@ -7,7 +7,7 @@ class PromotionController extends ControllerBase {
     public function init() {
         App()->theme = ADMIN_THEME;
         parent::init();
-        $this->registerCS();        
+        $this->registerCS();
     }
 
     public function registerCS() {
@@ -54,11 +54,11 @@ class PromotionController extends ControllerBase {
             $model->attributes = $_POST['Promotion'];
             $model->alias = $_POST['Promotion']['alias'];
             $model->create_time = date('Y-m-d H:i:s');
-           
+
 //            var_dump(CUploadedFile::getInstance($model, 'image'));
             $this->uploadImage($model);
-            
-            if ($model->save()){
+
+            if ($model->save()) {
                 $this->setFlash('Promotion has been created.');
                 $this->refresh();
             }
@@ -69,7 +69,7 @@ class PromotionController extends ControllerBase {
             'term' => $term
         ));
     }
-    
+
     public function uploadImage($model) {
         $image = CUploadedFile::getInstance($model, 'image');
         if (is_object($image)) {
@@ -82,25 +82,25 @@ class PromotionController extends ControllerBase {
             if (!is_dir($uri)) {
                 mkdir($uri . '/original', 0777, true);
             }
-            
+
             //check position, if it is set as 1, create image size with 639x315
-            if ($model->position == 1){
-                if (!is_dir($uri . "/promotion_banner")){
+            if ($model->position == 1) {
+                if (!is_dir($uri . "/promotion_banner")) {
                     mkdir($uri . '/promotion_banner', 0777, true);
                 }
             }
 
             $img = new Image($image->tempName);
             $img->save($uri . '/original/' . $name);
-            
+
             //resize image to banner size
             $img->resize(639, 315, Image::WIDTH);
             $img->save($uri . '/promotion_banner/' . $name);
-            
+
             $model->image = $uri . '/original/' . $name;
         }
     }
-    
+
     /**
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -110,19 +110,24 @@ class PromotionController extends ControllerBase {
         $model = $this->loadModel($id);
         $term = Term::buildDataForList(Term::buildTree(1)); // Category
         $model->cate = CHtml::listData($model->pTerm, 'id', 'id');
-        
+
         $img = $model->image;
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if (isset($_POST['Promotion'])) {
             $model->attributes = $_POST['Promotion'];
+
+            if (!$model->isNewRecord) {
+                $model->image = $img;
+            }
             
-            if ($_FILES['Promotion']['image'] === null){
-                $model->image = $img;                
-            }else
+            if (isset($_FILES['Promotion'])) {              
+                if (file_exists($img))
+                    unlink($img);
                 $this->uploadImage($model);
-            
+            }
+
             if ($model->save())
                 $this->setFlash('Promotion has been updated.');
         }

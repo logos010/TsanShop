@@ -32,5 +32,16 @@ class UtiService {
         ));
         return (!is_null($parent)) ? $parent->name: '';
     }
+    
+    public static function getPromotion($position){
+        $promotion = Promotion::model()->find(array(
+            'condition' => 'position=:position',
+            'params' => array(
+                ':position' => $position
+            )
+        ));
+        
+        return $promotion;
+    }
             
 }
