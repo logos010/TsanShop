@@ -106,7 +106,7 @@ a.sign-up{
     padding: 4px 0;
     font-weight: 600;
     color: #ea6a53;
-    width: 14%;
+    width: 7em;
     padding: 4px 0px 4px 13px;
 }
 a.sign-up:hover{
@@ -226,7 +226,7 @@ a.sign-up:hover{
     padding:0;
 }
 .banner{	
-    background:url(../images/banner.jpg) bottom no-repeat;
+    /*background:url(../images/banner.jpg) bottom no-repeat;*/
     width: 100%;
     min-height: 425px;
     background-size:cover;
@@ -2655,3 +2655,21 @@ div.top-nav > ul > li > a {text-transform: uppercase}
     font-size: 1.1em;
     text-decoration: none;
 }
+.header-guest{
+    float: right;
+    width: 45%;
+    padding-top: 15px;
+}
+
+/*Cart for guest*/
+.cart{
+    max-height: 24px;
+    float: left;
+    padding: 0.3em;
+}
+label#shopping-item{
+    font-size: 1.1em;
+    margin-right: 0.15em;    
+}
+
+section{margin-top: 1em}
