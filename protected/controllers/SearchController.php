@@ -3,20 +3,22 @@
 
 class SearchController extends ControllerBase{
     
-    public function actionSearchInBasic(){
-        if (isset($_REQUEST['keyword'])){
-            var_dump($_REQUEST['keyword']); 
+    public function actionSearchInBasic($keyword){
+        var_dump($keyword);
+        $kw = $keyword;
+//        if ($kw){
             $criteria = new CDbCriteria();
-            $criteria->compare('name', $_REQUEST['keyword'], true);
-            $criteria->compare('price', $_REQUEST, true, 'OR');
-            $criteria->compare('description', $_POST['keyword'], true, 'OR');
-            $criteria->compare('detail', $_POST['keyword'], true, 'OR'); 
-            
-            $products = Product::model()->findAll($criteria);            
-            $this->render('search', array(
+            $criteria->compare('name', $kw, true);
+            $criteria->compare('price', $kw, true, 'OR');
+            $criteria->compare('description', $kw, true, 'OR');
+            $criteria->compare('detail', $kw, true, 'OR'); 
+//            echo '<pre>';print_r($criteria); echo '</pre>';
+            $products = Product::model()->findAll($criteria); 
+//            echo count($products);
+            $this->renderPartial('search', array(
                 'prodSearch' => $products,
                 'totalProducts' => count($products),
             ));
-        }
+//        }
     }
 }

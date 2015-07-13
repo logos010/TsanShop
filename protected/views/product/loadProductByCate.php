@@ -35,7 +35,7 @@ $this->breadcrumbs = array(
             <!-- START OTHER PRODUCTS-->
             <div class="lady-in-on">
                 <div class="buy-an">
-                    <h3>OTHER PRODUCTS</h3>
+                    <h3>Sản phẩm khác</h3>
                     <p>Check our all latest products in this section.</p>
                 </div>
                 <ul id="flexiselDemo1">	

@@ -31,10 +31,7 @@
                 <div class="container">
                     <div class="header-grid">
                         <ul>
-                            <li  ><a href="articles.html" class="scroll">Articles</a></li>
-                            <li><a href="contact.html" class="scroll">Contact  </a></li>
-                            <li><a href="privacy.html" class="scroll">Privacy</a></li>
-                            <li><a href="#" class="scroll">Terms</a></li>						
+                            <li><a href="#" class="scroll">Phương thức giao hàng</a></li>
                         </ul>
                     </div>
                     <div class="header-grid-right">
@@ -165,7 +162,7 @@
             //search form
             $("form[name='search']").submit(function () {
                 var kw = $('#keywords').val();
-                var url = "<?php echo App()->controller->createUrl('/search/searchInBasic'); ?>/keyword/" + kw;
+                var url = "<?php echo App()->controller->createUrl('/search/searchInBasic'); ?>/keyword/" + kw;                                
                 $.ajax({
                     url: url,
                     type: "post",

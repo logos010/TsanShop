@@ -2677,3 +2677,9 @@ section{margin-top: 1em}
 /*order status*/
 span.pending{color: red;}
 span.done{color: green}
+
+/*delivery*/
+.delivery{
+    background: url(../images/delivery.png) no-repeat;
+    width: 149px;
+}

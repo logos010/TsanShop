@@ -25,7 +25,44 @@ $this->menu = array(
         <!---->
         <div class="in-line">
             <div class="para-an">
-                <h3>LATEST  ARRIVALS</h3>
+                <h3>Sản Phẩm Mới Nhất</h3>
+                <p>Check our all latest products in this section.</p>
+            </div>
+            <div class="lady-in">
+                <?php
+                $i = 1;
+                $last = null;
+                foreach ($products as $k => $v):
+                    if ($i % 3 == 0) {
+                        $last = ' para-grid';
+                    }
+                    ?>
+                    <div class="col-md-4 you-para <?php echo $last; ?>">
+                        <a href="<?php echo App()->createUrl('product/detail', array('pid' => $v->id)); ?>">
+                            <img class="img-responsive pic-in" src="<?php echo $v->image; ?>" alt=" " >
+                        </a>
+                        <?php if ($v->discount != 0): ?>
+                            <div class="you-in">
+                                <span>15<label>%</label></span>
+                                <small>off</small>
+                            </div>
+                        <?php endif; ?>
+                        <p><?php echo $v->name; ?></p>
+                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>| <label class="cat-in"> </label> 
+                            <a href="javascript:void(0)" class="add-to-cart" id="<?php echo $v->id; ?>">Mua ngay</a>
+                        </span>
+                    </div>
+                    <?php
+                    $last = ($i == 3) ? null : $last;
+                    $i++;
+                endforeach;
+                ?>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="in-line">
+            <div class="para-an">
+                <h3>Sản Phẩm Bán Chạy Nhất</h3>
                 <p>Check our all latest products in this section.</p>
             </div>
             <div class="lady-in">
