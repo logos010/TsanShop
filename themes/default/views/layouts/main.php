@@ -5,20 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Fashion Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />        
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+        <link href="<?php echo App()->theme->baseUrl; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<?php echo App()->theme->baseUrl; ?>/js/jquery.min.js"></script>
         <!-- Custom Theme files -->
         <!--theme-style-->
-        <link href="<?php echo App()->theme->baseUrl; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />        
-        <link href="<?php echo App()->theme->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />        
+        <link href="<?php echo App()->theme->baseUrl; ?>/css/style.css" rel="stylesheet" type="text/css" media="all" />	
         <!--//theme-style-->        
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <!--fonts-->
         <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>    
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <!--//fonts-->
 
         <script src="<?php echo App()->theme->baseUrl; ?>/js/js.cookie.js"></script>
         <script src="<?php echo App()->theme->baseUrl; ?>/js/bootbox.min.js"></script>
@@ -29,68 +29,41 @@
         <div class="header">
             <div class="header-top">
                 <div class="container">
-                    <div class="header-grid">
-                        <ul>
-                            <li><a href="#" class="scroll">Phương thức giao hàng</a></li>
-                        </ul>
-                    </div>
-                    <div class="header-grid-right">
-                        <?php if (App()->user->isGuest): ?>
-                            <div class="header-guest">     
-                                <a href="javascript:void(0)" class="cart">
-                                    <label id="shopping-item"></label>
-                                    <img src="<?php echo App()->theme->baseUrl . "/images/invoice.png"; ?>" alt="Giỏ hàng" width="20" />
-                                </a>
-                                <a href="<?php echo App()->createUrl('user/login'); ?>" class="sign-up">Đăng Nhập</a>
-                                <label>|</label>
-                                <a href="<?php echo App()->createUrl('user/registration'); ?>" class="sign-up">Đăng Ký</a>
+                    <nav class="navbar navbar-default navbar-static-top">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
                             </div>
-                        <?php else: ?>
-                            <div class="header-account">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="scroll">
-                                            <img src="<?php echo App()->theme->baseUrl ?>/images/account.png" alt="Tài khoản" height="18"/>
-                                            <?php echo Yii::app()->user->name; ?></a>                                    
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo App()->controller->createurl('order/viewCart'); ?>" class="scroll">
-                                            <label id="shopping-item"></label>
-                                            <img src="<?php echo App()->theme->baseUrl ?>/images/add-to-basket.png" alt="Giỏ hàng" height="20" />
-                                            Giỏ hàng</a>                                    
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo App()->controller->createurl('order/myOrders'); ?>" class="scroll">
-                                            <label id="shopping-item"></label>
-                                            <img src="<?php echo App()->theme->baseUrl ?>/images/invoice.png" alt="Đơn hàng" height="20" />
-                                            Đơn hàng</a>                                    
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo App()->createUrl('/user/logout'); ?>" class="scroll">
-                                            <img src="<?php echo App()->theme->baseUrl ?>/images/sign_out.png" alt="Thoát" height="24" />
-                                            Thoát</a>
-                                    </li>
-                                </ul>
-                            </div>                        
-                        <?php endif; ?>
-                    </div>
+
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#">Phương Thức Mua Hàng</a></li>                           
+                                </ul>                                
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
                     <div class="clearfix"> </div>
                 </div>
             </div>
             <div class="container">
                 <div class="header-bottom">			
                     <div class="logo">
-                        <a href="<?php echo App()->createUrl('/'); ?>"><img src="<?php echo App()->theme->baseUrl; ?>/images/logo.png" alt=" " ></a>
+                        <a href="index.html"><img src="<?php echo App()->theme->baseUrl ?>/images/logo.png" alt=" " ></a>
                     </div>
                     <div class="ad-right">
-                        <img class="img-responsive" src="images/ad.png" alt=" " >
+                        <img class="img-responsive" src="<?php echo App()->theme->baseUrl ?>/images/ad.png" alt="Ads" >
                     </div>
                     <div class="clearfix"> </div>
                 </div>	
                 <div class="header-bottom-bottom">
                     <div class="top-nav">
                         <span class="menu"> </span>
-                        <ul class="menu-nav-bar">
+                        <ul>
                             <?php
                             $this->widget('application.components.MenuFrontPage', array(
                                 'menuCate' => isset($_GET['tid']) ? $_GET['tid'] : null,
@@ -107,23 +80,22 @@
                         <div class="clearfix"> </div>					
                     </div>
                     <div class="search">
-                        <form name="search">
-                            <input type="text" value="Search" id="keywords" onfocus="this.value = '';" onblur="if (this.value == '') {
+                        <form>
+                            <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = '';
                                     }" >
                             <input type="submit"  value="">
-                        </form>                        
+                        </form>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
             </div>
         </div>
-
         <!--content-->
         <div class="content">
-            <div class="container main-container">
-                <?php echo $content; ?>
-            </div>            
+            <div class="container">
+               <?php echo $content; ?>
+            </div>
         </div>
         <!---->
         <div class="footer">
@@ -147,44 +119,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- search result -->
-        <script type="text/javascript">
-            var activeClass = 0;
-            $("ul.menu-nav-bar").find('li').each(function () {
-                if ($(this).hasClass('active'))
-                    activeClass = 1;
-                return true;
-            });
-            if (activeClass == 0)
-                $("ul.menu-nav-bar li").first().addClass('active');
-
-            //search form
-            $("form[name='search']").submit(function () {
-                var kw = $('#keywords').val();
-                var url = "<?php echo App()->controller->createUrl('/search/searchInBasic'); ?>/keyword/" + kw;                                
-                $.ajax({
-                    url: url,
-                    type: "post",
-                    success: function (data) {
-                        //$("div.content").html(data);
-                        $("div.main-container").html(data);
-                    }
-                });
-                return false;
-            });
-
-            //cart items
-            var items = "<?php echo App()->shoppingCart->getCount(); ?>";
-            if (items != 0)
-                $("label#shopping-item").html("(" + items + ")");
-            
-            $("a.cart").click(function () {
-                if (items == 0)
-                    bootbox.alert("Giỏ hàng của bạn hiện đang trống.");
-                else
-                    $(location).attr("href", "<?php echo App()->controller->createUrl('order/viewCart'); ?>");
-            });
-        </script>
     </body>
 </html>

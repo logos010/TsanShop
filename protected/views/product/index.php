@@ -7,20 +7,26 @@ $this->menu = array(
     array('label' => 'Create Product', 'url' => array('create')),
     array('label' => 'Manage Product', 'url' => array('admin')),
 );
-
-//Multiple Select Dropdown -->
-//scriptFile(themeUrl() . "/js/jquery-ui-1.8.23.custom.min.js", CClientScript::POS_BEGIN);
-//scriptFile(themeUrl() . "/js/mainnav-smoothScrolling.js", CClientScript::POS_BEGIN);
-//scriptFile(themeUrl() . "/js/jQuery.equalHeights.js", CClientScript::POS_BEGIN);
 ?>
+<link href="<?php echo App()->theme->baseUrl; ?>/css/jquery.bxslider.css" rel="stylesheet" type="text/css" media="all" />
+<script src="<?php echo App()->theme->baseUrl; ?>/js/jquery.bxslider.min.js"></script>
+<script>
+    $(function () {
+        $('.bxslider').bxSlider();
+    });
+</script>
 
 <div class="women-in">
     <div class="col-md-9 col-d">
         <?php $promotion_one = UtiService::getPromotion(1); ?>
         <div class="banner">
-            <a href="<?php echo App()->controller->createUrl($promotion_one->url); ?>">
-                <img src="<?php echo $promotion_one->image ?>" alt="<?php echo $promotion_one->alias ?>" />
-            </a>
+            <ul class="bxslider">                
+                <li><img src="<?php echo $promotion_one->image ?>" class="img-responsive" alt="<?php echo $promotion_one->alias ?>" /></li>
+                <li><img src="<?php echo $promotion_one->image ?>" class="img-responsive" alt="<?php echo $promotion_one->alias ?>" /></li>                
+            </ul>
+<!--            <a href="<?php echo App()->controller->createUrl($promotion_one->url); ?>">
+                <img src="<?php echo $promotion_one->image ?>" class="img-responsive" alt="<?php echo $promotion_one->alias ?>" />
+            </a>-->
         </div>
         <!---->
         <div class="in-line">
@@ -28,36 +34,29 @@ $this->menu = array(
                 <h3>Sản Phẩm Mới Nhất</h3>
                 <p>Check our all latest products in this section.</p>
             </div>
-            <div class="lady-in">
+            <div class="lady-in">                
                 <?php
                 $i = 1;
-                $last = null;
+                $last = '';
                 foreach ($products as $k => $v):
-                    if ($i % 3 == 0) {
-                        $last = ' para-grid';
-                    }
+                    if ($i % 3 == 0) :
+                        $last = 'para-grid';
+                    endif;
                     ?>
                     <div class="col-md-4 you-para <?php echo $last; ?>">
-                        <a href="<?php echo App()->createUrl('product/detail', array('pid' => $v->id)); ?>">
+                        <a href="/">
+                            <!--<img class="img-responsive pic-in" src="<?php echo App()->theme->baseUrl; ?>/images/pi.jpg" alt=" " >-->
                             <img class="img-responsive pic-in" src="<?php echo $v->image; ?>" alt=" " >
-                        </a>
-                        <?php if ($v->discount != 0): ?>
-                            <div class="you-in">
-                                <span>15<label>%</label></span>
-                                <small>off</small>
-                            </div>
-                        <?php endif; ?>
+                        </a>                        
                         <p><?php echo $v->name; ?></p>
-                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>| <label class="cat-in"> </label> 
-                            <a href="javascript:void(0)" class="add-to-cart" id="<?php echo $v->id; ?>">Mua ngay</a>
-                        </span>
+                        <span>$179.00  | <label class="cat-in"> </label> <a href="#">Add to Cart </a></span>
                     </div>
                     <?php
-                    $last = ($i == 3) ? null : $last;
+                    $last = ($i % 3 == 0) ? '' : $last;
                     $i++;
                 endforeach;
                 ?>
-                <div class="clearfix"></div>
+                <div class="clearfix"> </div>
             </div>
         </div>
         <div class="in-line">
@@ -181,12 +180,11 @@ $this->menu = array(
                 }
             });
         });
-
         $("a.add-to-cart").on('click', function () {
             $.ajax({
                 url: "<?php echo App()->controller->createUrl('/order/addToCart'); ?>",
                 type: 'post',
-                data: "pid="+$(this).attr('id')+"&quantity=1&size=L",
+                data: "pid=" + $(this).attr('id') + "&quantity=1&size=L",
                 success: function (items) {
                     //$("#shopping-item").html("(" + items + ")");
                     console.log(items);

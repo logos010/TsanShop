@@ -2683,3 +2683,10 @@ span.done{color: green}
     background: url(../images/delivery.png) no-repeat;
     width: 149px;
 }
+
+
+/*Overwrite Bootstrap Nav bar*/
+.navbar{margin-bottom: 0px;}
+.navbar-default{background: none; border: none;}
+.navbar-default .navbar-nav > li > a{color: #FFF; font-weight: bold; font-size: 1.35em}
+.navbar-default .navbar-nav > li > a:hover{text-decoration: none; color: #bc3726}
