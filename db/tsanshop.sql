@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 04, 2015 at 07:51 PM
+-- Generation Time: Jul 25, 2015 at 08:20 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -1061,10 +1061,10 @@ INSERT INTO `tbl_menu` (`id`, `type_id`, `parent_id`, `alias`, `name`, `url`, `w
 (11, 2, 0, 'contact', 'Contact', '/contact/admin', 0, '000011', 1, '2014-03-18 04:49:04', '2014-03-18 04:49:29', ''),
 (12, 2, 4, 'translate', 'Translate', '/admin/translate/index', 0, NULL, 1, '2014-04-25 03:56:41', '2014-04-25 03:57:33', ''),
 (14, 1, 0, 'home', 'Home', '', 1, NULL, 1, '2015-05-16 07:38:50', '2015-05-16 11:09:33', ''),
-(15, 1, 0, 'san-pham-i', 'San pham I', '/product/cate/tid/1', 5, NULL, 1, '2015-06-08 11:45:44', '2015-06-13 07:42:08', ''),
-(16, 1, 0, 'san-pham-ii', 'San pham II', '/product/cate/tid/2', 10, NULL, 1, '2015-06-08 11:45:56', '2015-06-13 07:42:21', ''),
-(17, 1, 0, 'san-pham-iii', 'San Pham III', '/product/cate/tid/3', 15, NULL, 1, '2015-06-08 11:46:06', '2015-06-13 07:42:32', ''),
-(18, 1, 0, 'san-pham-iv', 'San Pham IV', '/product/cate/tid/4', 20, NULL, 1, '2015-06-08 11:46:30', '2015-06-13 07:42:41', ''),
+(15, 1, 0, 'ao-thun', 'Áo Thun', '/product/cate/tid/1', 5, NULL, 1, '2015-06-08 11:45:44', '2015-07-13 10:24:22', ''),
+(16, 1, 0, 'ao-khoac', 'Áo Khoác', '/product/cate/tid/2', 10, NULL, 1, '2015-06-08 11:45:56', '2015-07-13 10:24:12', ''),
+(17, 1, 0, 'ao-so-mi', 'Áo Sơ Mi', '/product/cate/tid/3', 15, NULL, 1, '2015-06-08 11:46:06', '2015-07-13 10:24:44', ''),
+(18, 1, 0, 'san-pham-iv', 'San Pham IV', '/product/cate/tid/4', 20, NULL, 0, '2015-06-08 11:46:30', '2015-06-13 07:42:41', ''),
 (19, 1, 15, 'san-pham-ii', 'San pham I-I', '#', 0, NULL, 1, '2015-06-08 11:46:39', '2015-06-08 11:47:18', ''),
 (20, 1, 15, 'san-pham-iii', 'San Pham I-II', '#', 0, NULL, 1, '2015-06-08 11:46:51', NULL, ''),
 (21, 1, 0, 'chinh-sach', 'Chính sách', '#', 25, NULL, 1, '2015-06-08 11:48:01', NULL, ''),
@@ -1122,15 +1122,12 @@ CREATE TABLE IF NOT EXISTS `tbl_news` (
   PRIMARY KEY (`id`),
   KEY `create_time` (`create_time`),
   KEY `stream` (`stream`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `tbl_news`
 --
 
-INSERT INTO `tbl_news` (`id`, `title`, `alias`, `thumb`, `teaser`, `content`, `promote`, `type`, `uri`, `stream`, `create_time`, `publish_time`, `update_time`, `countview`, `status`, `create_by`, `update_by`, `quote`) VALUES
-(1, 'Will Google Photos Become Fashion’s New Favorite App? ', 'will-google-photos-become-fashion-s-new-favorite-app', 'upload/news/2015/06/orginal/1433340823.jpg', 'Will Google Photos Become Fashion’s New Favorite App?', '<p>Until Google can offer us computerized pants&mdash;a real thing in development with Levi&rsquo;s&mdash;we have Google Photos to keep us busy. And that it will. The new app launched today offers a full suite of possibilities, allowing for more  complex commands and options than one might find in their Camera Roll or  on iPhoto. The software allows you to store all the photos you take on  your phone; search through them with precise keywords; and make them  into movies, animations, collages, and &ldquo;stories,&rdquo; as Google calls them,  which are sort of like digital scrapbooks. Then you can share the above  in huge batches using an auto-generated link.&nbsp;</p>\r\n<p>The search function might be Google Photos&rsquo; most addicting feature.  The app allows you to search within your thousands of stored photos by  people (click on a photo of Marc Jacobs&nbsp;and it will load all the photos  you&rsquo;ve snapped of the designer&mdash;thanks, facial recognition!), by places  (&ldquo;Milk Studios&rdquo;), and by things (&ldquo;denim&rdquo;). You also can quickly and  easily transform pictures into GIFs; send hundreds of photos to friends  or coworkers with the click of a button; and create photo montages and  movies so cinematic, people will actually want to watch them. There&rsquo;s  also the standard photo app fair: applying filters, adjusting light,  cropping, and more.&nbsp;</p>\r\n<p>So what does this mean for the fashion community? Expect a lot more  GIFs and a lot less frustration over finding the five great photos you  took at the Alexander Wang show during the Spring 2016 season. You won&rsquo;t  need to worry about the doomsaying &ldquo;Not Enough Storage&rdquo; message popping  up as you&rsquo;re about to snap a selfie with Miley Cyrus in the front row  at Moschino, because the app offers free and unlimited storage for  photos, and you can create a digital photo album of your fashion week  adventures, complete with a map that shows your route from New York to  London to Milan to Paris, all on your phone. (All these features are  impressive, but consider yourself warned: The app&rsquo;s initial pass through  your photos is glacially slow. After hours of trying, it has yet to  suss through this writer&rsquo;s&nbsp;661 photos and 38 videos.)</p>\r\n<p>Still, Google Photos has a long way to go before it replaces  fashion&rsquo;s favorite app, Instagram. At the moment, Google Photos features  no public-sharing option, rendering it more akin to a photography tool  than a must-have networking app. Plus, most of the features that make  the app so cool&mdash;like its polished movies with soundtracks and stories  with timelines and maps&mdash;can&rsquo;t be shared over Instagram or Snapchat. And  if a user can&rsquo;t share his or her fashion week experience with followers,  what&rsquo;s the point? In addition, searching for fashion terms on the app  is somewhat limited&mdash;&ldquo;shoes&rdquo; will work, but not &ldquo;Proenza Schouler.&rdquo;&nbsp;It  can search breeds of dogs, but not brands of jewelry. The bottom line is  that Google Photos will make organizing and distributing your fashion  imagery all the easier, but it&rsquo;s still up to you to get it out there on  social media.</p>', 0, 0, '/FurstDesign/site/view/cate/hoat-dong/id/1/alias/will-google-photos-become-fashion-s-new-favorite-app/sub/cap-nhat-xu-huong', 0, '2015-06-03 21:13:43', '2015-06-03 21:12:24', '2015-06-07 19:18:47', 0, 1, 0, 0, ''),
-(2, 'Tamsin Bemoans Small Leading Men', 'tamsin-bemoans-small-leading-men', 'upload/news/2015/06/orginal/1433680055.jpg', 'ACTRESS Tamsin Egerton has revealed that her height has cost her Hollywood roles, since many of the industry''s leading men are so short. The actress, who is 5ft 10in, often wears flat to events, and even poses to look smaller when placed next to diminutive co-stars.\r\n\r\n"My height has counted against me many times," she told the Daily Mail''s Sebastian Shakespeare. "I''ve lost so many wonderful roles because I''m too tall, apparently, and it''s largely down to the actor in the other part."', '<p>A recent co-star - 6ft 3in Josh Hartnett, with whom she starred in <em>The Lovers</em> - caused no such problem for the actress, and the twosome became a real-life couple after the movie wrapped. Egerton, although by no means alone as a tall leading lady, is certainly in the minority in the industry.</p>\r\n<p id="inreadAdPlaceholderOuter">&nbsp;\r\n<p id="tt-wrapper9bf48e4">\r\n<p id="tt-mention9bf48e4">ADVERTISING</p>\r\n</p>\r\n</p>\r\n<p>Actresses like Cate Blanchett (5ft 8.5in), Nicole Kidman (5ft 10.5in) and Uma Thurman (5ft 11in) are taller than average, but many of film''s biggest names - including Oscar winners Reese Witherspoon (5ft 1in), Natalie Portman (5ft 3in) and Julianne Moore (5ft 3.5in) - are considerably smaller than the industry''s leading men.</p>\r\n<p>"You see them on screen and they look so strapping and tall and then meet them and you think, ''Oh... this isn''t going to work!'' And I can''t do anything to fix it," Egerton added. "It''s gone against me again and again. I''m used to it at this point. And I''m actually not that tall. It''s because I''m skinny that I seem taller."</p>', 0, 0, '/FurstDesign/site/view/cate/fashion-show/id/2/alias/tamsin-bemoans-small-leading-men', 0, '2015-06-07 19:27:35', '2015-06-07 19:25:26', '0000-00-00 00:00:00', 0, 1, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1246,7 +1243,7 @@ INSERT INTO `tbl_product` (`id`, `name`, `alias`, `uri`, `image`, `sku`, `quanti
 (5, 'Jack & Jones T-Shirt with Palm Tree Print', 'jack-jones-tshirt-with-palm-tree-print', '', 'http://localhost/TsanShop/upload/2015/06/medium/20150610104229.jpg', 'SKU', 233, 22, NULL, NULL, 0, 0, 0, 0, '<p>44</p>', '<p>44</p>', 1, 0, '2015-06-10 22:42:29', NULL),
 (6, 'SikSilk X Café Mambo Longline Vest In Tropical Print', 'siksilk-x-cafe-mambo-longline-vest-in-tropical-print', '', 'http://localhost/TsanShop/upload/2015/06/medium/20150610104254.jpg', 'SKU', 300, 800, NULL, NULL, 0, 0, 0, 0, '<p>ww</p>', '<p>ww</p>', 1, 0, '2015-06-10 22:42:54', NULL),
 (7, 'New Look Tie Dye Vest', 'new-look-tie-dye-vest', '', 'http://localhost/TsanShop/upload/2015/06/medium/20150610104426.jpg', 'SKU', 22, 34, NULL, NULL, 0, 0, 0, 0, '<p>sss</p>', '<p>ss</p>', 1, 0, '2015-06-10 22:44:26', NULL),
-(8, 'ASOS Super Longline Vest With Grandad Neck', 'asos-super-longline-vest-with-grandad-neckASOS Super Longline Vest With Grandad Neck', '', 'http://localhost/TsanShop/upload/2015/06/medium/20150610104450.jpg', 'SKU', 22, 43, NULL, NULL, 0, 0, 0, 0, '<p>as</p>', '<p>sa</p>', 1, 0, '2015-06-10 22:44:50', NULL),
+(8, 'ASOS Super Longline Vest With Grandad Neck', 'asos-super-longline-vest-with-grandad-neckASOS Super Longline Vest With Grandad Neck', '', 'http://localhost/TsanShop/upload/2015/06/medium/20150610104450.jpg', 'SKU', 22, 43, NULL, NULL, 0, 0, 0, 0, '<p>as</p>', '<p>sa</p>', 0, 0, '2015-06-10 22:44:50', NULL),
 (9, 'ASOS Super Longline Sleeveless T-Shirt With Oil Wash And Boxy Fit', 'asos-super-longline-sleeveless-tshirt-with-oil-wash-and-boxy-fit', '', 'http://localhost/TsanShop/upload/2015/06/medium/20150610104515.jpg', 'SKU', 121, 212, NULL, NULL, 0, 0, 0, 0, '<p>dsa</p>', '<p>dada</p>', 1, 0, '2015-06-10 22:45:15', NULL);
 
 -- --------------------------------------------------------
@@ -1712,7 +1709,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `username`, `password`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'logos010@gmail.com', 'a65acadff4eae23f51672e89011bb7ea', 1261146094, 1435999944, 1, 1),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'logos010@gmail.com', 'a65acadff4eae23f51672e89011bb7ea', 1261146094, 1436801253, 1, 1),
 (2, 'demo', 'fe01ce2a7fbac8fafaed7c982a04e229', 'demo@example.com', '099f825543f7850cc038b90aaff39fac', 1261146096, 0, 0, 1),
 (14, '123213213', '6dd4fbd99663c43d8d54c109aabdab8c', 'chaudieu08@yahoo.com', 'b45e5945a5d9f1078155412ab0bc5643', 1433261986, 1433262036, 0, 1),
 (16, '2133221', '25d55ad283aa400af464c76d713c07ad', 'haolangvn@gmail.com', '4abdd34ce8fb65305edad2ce38443414', 1433597538, 0, 0, 0);
