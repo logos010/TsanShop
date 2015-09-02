@@ -89,6 +89,15 @@ class PromotionController extends ControllerBase {
                     mkdir($uri . '/promotion_banner', 0777, true);
                 }
             }
+            
+            if (!$model->isNewRecord){                              
+                if(file_exists($model->image))
+                    unlink ($model->image);
+                $promotionFolder = str_replace('original', 'promotion_banner', $model->image);
+//                var_dump(file_exists($promotionFolder)); exit();
+                if(file_exists(str_replace('original', 'promotion_banner', $model->image)))
+                    unlink ($promotionFolder);
+            }
 
             $img = new Image($image->tempName);
             $img->save($uri . '/original/' . $name);

@@ -3,9 +3,8 @@
 /* @var $model Promotion */
 
 $this->breadcrumbs=array(
-	'Promotions'=>array('index'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	'Promotion'=>array('/admin/product/promotion'),
+	$model->name. ' - Update',
 );
 
 $this->menu=array(

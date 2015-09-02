@@ -3,7 +3,7 @@
 /* @var $model Promotion */
 
 $this->breadcrumbs=array(
-	'Promotions'=>array('index'),
+	'Promotions'=>array('/admin/product/promotion'),
 	'Create',
 );
 

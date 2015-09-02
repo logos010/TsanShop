@@ -10,7 +10,7 @@ $this->menu = array(
 ?>
 <link href="<?php echo App()->theme->baseUrl; ?>/css/jquery.bxslider.css" rel="stylesheet" type="text/css" media="all" />
 <script src="<?php echo App()->theme->baseUrl; ?>/js/jquery.bxslider.min.js"></script>
-<script>
+<script type="text/javascript">
     $(function () {
         $('.bxslider').bxSlider();
     });
@@ -19,17 +19,22 @@ $this->menu = array(
 <div class="women-in">
     <div class="col-md-9 col-d">
         <?php $promotion_one = UtiService::getPromotion(1); ?>
+        <?php if (!empty($promotion_one)):?>
         <div class="banner">
-            <ul class="bxslider">                
-                <li><img src="<?php echo $promotion_one->image ?>" class="img-responsive" alt="<?php echo $promotion_one->alias ?>" /></li>
-                <li><img src="<?php echo $promotion_one->image ?>" class="img-responsive" alt="<?php echo $promotion_one->alias ?>" /></li>                
+            <ul class="bxslider">
+                <?php foreach ($promotion_one as $k => $v):  ?>
+                    <li>
+                        <a href="<?php echo App()->controller->createUrl($promotion_one->url); ?>">
+                            <img src="<?php echo $v->image ?>" class="img-responsive" alt="<?php echo $v->alias ?>" />
+                        </a>
+                    </li>
+                <?php endforeach; ?>
             </ul>
-<!--            <a href="<?php echo App()->controller->createUrl($promotion_one->url); ?>">
-                <img src="<?php echo $promotion_one->image ?>" class="img-responsive" alt="<?php echo $promotion_one->alias ?>" />
-            </a>-->
         </div>
+        <?php endif; ?>
         <!---->
         <div class="in-line">
+            <?php if (!empty($products_new)): ?>
             <div class="para-an">
                 <h3>Sản Phẩm Mới Nhất</h3>
                 <p>Check our all latest products in this section.</p>
@@ -38,7 +43,7 @@ $this->menu = array(
                 <?php
                 $i = 1;
                 $last = '';
-                foreach ($products as $k => $v):
+                foreach ($products_new as $k => $v):
                     if ($i % 3 == 0) :
                         $last = 'para-grid';
                     endif;
@@ -58,8 +63,11 @@ $this->menu = array(
                 ?>
                 <div class="clearfix"> </div>
             </div>
+            <?php endif; ?>
         </div>
+        
         <div class="in-line">
+            <?php if (!empty($products)): ?>
             <div class="para-an">
                 <h3>Sản Phẩm Bán Chạy Nhất</h3>
                 <p>Check our all latest products in this section.</p>
@@ -95,6 +103,7 @@ $this->menu = array(
                 ?>
                 <div class="clearfix"></div>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="col-md-3 col-m-left">
@@ -103,10 +112,13 @@ $this->menu = array(
         $promotion_two = UtiService::getPromotion(2);
         ?>
         <div class="in-left">	
+            <?php if (!empty($promotion_two)): ?>
             <a href="<?php echo App()->controller->createUrl($promotion_two->url); ?>">
-                <img src="<?php echo $promotion_two->image ?>" alt="<?php echo $promotion_two->alias ?>" />
+                <img src="<?php echo $promotion_two->image ?>" alt="<?php echo $promotion_two->alias ?>" class="img-responsive pic-in" />
             </a>
+            <?php endif; ?>
         </div>
+        <?php if (!empty($promote)): ?>
         <?php foreach ($promote as $k => $v): ?>
             <div class="discount">
                 <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)) ?>">
@@ -116,28 +128,14 @@ $this->menu = array(
                 <a href="<?php echo App()->controller->createUrl('product/detail', array('pid' => $v->id)) ?>" class="know-more">know more</a>
             </div>
         <?php endforeach; ?>
-
-        <div class="twitter-in">
-            <h5>TWITTER  UPDATES</h5>
-            <span class="twitter-ic"></span>
-            <div class="up-date">
-                <p>@suniljoshi Looks like nice and dicent design</p>
-                <a href="#">http://bit.ly/sun</a>
-                <p class="ago">About 1 hour ago via twitterfeed</p>
-            </div>
-            <div class="up-date">
-                <p>@suniljoshi Looks like nice and dicent design</p>
-                <a href="#">http://bit.ly/sun</a>
-                <p class="ago">About 1 hour ago via twitterfeed</p>
-            </div>
-            <a href="#" class="tweets">More Tweets</a>
-            <div class="clearfix"> </div>
-        </div>
+        <?php endif; ?>
+        
     </div>
     <div class="clearfix"> </div>
 </div>
 
 <div class="lady-in-on">
+    <?php if (!empty($others)): ?>
     <div class="buy-an">
         <h3>OTHER PRODUCTS</h3>
         <p>Check our all latest products in this section.</p>
@@ -196,4 +194,5 @@ $this->menu = array(
         });
     </script>
     <script type="text/javascript" src="<?php echo App()->theme->baseUrl; ?>/js/jquery.flexisel.js"></script>
+    <?php endif; ?>
 </div>

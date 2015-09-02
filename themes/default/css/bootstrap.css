@@ -756,7 +756,7 @@ pre code {
 }
 .container-fluid {
   padding-right: 15px;
-  padding-left: 15px;
+  /*padding-left: 15px;*/
   margin-right: auto;
   margin-left: auto;
 }
@@ -3064,9 +3064,12 @@ input[type="button"].btn-block {
   color: #333;
   white-space: nowrap;
 }
+
+.dropdown-menu > ul > li:hover{background-color: #f5f5f5;}
+
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-  color: #262626;
+  color: #bc3726;
   text-decoration: none;
   background-color: #f5f5f5;
 }
@@ -4007,12 +4010,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #555;
+  color: #bc3726;
   background-color: #e7e7e7;
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #777;
+    color: #fff;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {

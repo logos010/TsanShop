@@ -3,8 +3,7 @@
 /* @var $model Promotion */
 
 $this->breadcrumbs = array(
-    'Promotions' => array('index'),
-    'Manage',
+    'Promotions - Manage',
 );
 
 $this->menu = array(
@@ -57,6 +56,7 @@ $this->menu = array(
                     'htmlOptions' => array('width' => 80),
                     'type' => 'raw',
                     'value' => 'CHtml::link(CHtml::image(App()->theme->baseUrl. "/images/" . (($data->status==1)?"tick_circle.png":"cross_circle.png")), array("//admin/default/update_status", "model" => "Promotion", "pk"=>$data->id), array("class" => "update-status"))',
+//                    'value' => 'CHtml::link(CHtml::image(App()->theme->baseUrl. "/images/" . (($data->status==1)?"tick_circle.png":"cross_circle.png")), array("//admin/default/update_status", "model" => "Product", "pk"=>$data->id), array("class" => "update-status"))',
                     'filter' => array(1 => 'Active', 0 => 'Inactive'),
                     'htmlOptions' => array(
                         'align' => 'center'
@@ -72,3 +72,18 @@ $this->menu = array(
     </div>
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        //UPDATE STATUS        
+        $('a.update-status').live('click', function() {
+            $.fn.yiiGridView.update('promotion-grid', {
+                type: 'POST',
+                url: $(this).attr('href'),
+                success: function() {
+                    $.fn.yiiGridView.update('promotion-grid');
+                }
+            });
+            return false;
+        });        
+    });
+</script>

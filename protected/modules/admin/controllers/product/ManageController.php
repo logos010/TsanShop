@@ -73,14 +73,13 @@ class ManageController extends ControllerBase {
         $model = $this->loadModel($id);
         $term = Term::buildDataForList(Term::buildTree(1));
         $model->cate = CHtml::listData($model->pTerm, 'id', 'id');
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
+        
         if (isset($_POST['Product'])) {
             $model->attributes = $_POST['Product'];
             $model->price = floatval(str_replace(',', '', $_POST['Product']['price']));
             $model->promote = $_POST['Product']['promote'];
             $model->detail = $_POST['Product']['detail'];
+            $model->commercial_status = $_POST['Product']['commercial_status'];
             if ($model->save()) {
                 $this->setFlash('Product has been updated.');
 //                var_dump($_POST['Product']['detail']);

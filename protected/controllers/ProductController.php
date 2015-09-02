@@ -9,18 +9,18 @@ class ProductController extends ControllerBase {
     }
 
     public function actionIndex() {        
-        $products = Product::model()->findAll(array(
-            'condition' => 'status = 1',
-            'order' => 'RAND()',
+        $products_new = Product::model()->findAll(array(
+            'condition' => 'status = 1 AND commercial_status = 1', //New Products
+            'order' => 'id DESC',
             'limit' => '6'
         ));
         
         $currentProducts = null;
-        foreach ($products as $k => $v)
+        foreach ($products_new as $k => $v)
             $currentProducts .= $v->id.",";
         
-        $currentProducts = rtrim($currentProducts, ',');
-        
+        $currentProducts = (empty($currentProducts)) ? 0 :  rtrim($currentProducts, ',');
+                       
         $otherProducts = Product::model()->findAll(array(
             'condition' => 'id NOT IN ('.$currentProducts.') AND status = 1',
         ));
@@ -34,7 +34,7 @@ class ProductController extends ControllerBase {
         $promote = Promotion::model()->findAll($criteria);
                 
         $this->render('index', array(
-            'products' => $products,
+            'products_new' => $products_new,
             'others' => $otherProducts,
             'promote' => $promote
         ));
@@ -166,7 +166,7 @@ class ProductController extends ControllerBase {
         $currentProducts = null;
         foreach ($product as $k => $v)
             $currentProducts .= $v->id.",";
-        $currentProducts = rtrim($currentProducts, ',');
+        $currentProducts = (empty($currentProducts)) ? 0 :  rtrim($currentProducts, ',');
 
         $randomProducts = Product::model()->findAll(array(
             'condition' => 'id NOT IN ('.$currentProducts.')',

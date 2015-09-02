@@ -27,74 +27,35 @@
     <body> 
         <!--header-->
         <div class="header">
-            <div class="header-top">
-                <div class="container">
-                    <nav class="navbar navbar-default navbar-static-top">
-                        <div class="container">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-
-                            <div id="navbar" class="navbar-collapse collapse">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="#">Phương Thức Mua Hàng</a></li>                           
-                                </ul>                                
-                            </div><!--/.nav-collapse -->
-                        </div>
-                    </nav>
-                    <div class="clearfix"> </div>
-                </div>
-            </div>
             <div class="container">
-                <div class="header-bottom">			
-                    <div class="logo">
-                        <a href="index.html"><img src="<?php echo App()->theme->baseUrl ?>/images/logo.png" alt=" " ></a>
+                <div class="row-fluid">
+                    <div class="col-lg-12">
+                        <div class="header-bottom">			
+                            <div class="logo">
+                                <a href="index.html"><img src="<?php echo App()->theme->baseUrl ?>/images/logo.png" alt=" " ></a>
+                            </div>
+                            <div class="ad-right">
+                                <img class="img-responsive" src="<?php echo App()->theme->baseUrl ?>/images/ad.png" alt="Ads" >
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div> 
                     </div>
-                    <div class="ad-right">
-                        <img class="img-responsive" src="<?php echo App()->theme->baseUrl ?>/images/ad.png" alt="Ads" >
+                </div>
+                <div class="row-fluid">
+                    <div class="col-lg-12 header-bottom-bottom">
+                        <?php
+                        $this->widget('application.components.MenuFrontPage', array(
+                            'menuCate' => isset($_GET['tid']) ? $_GET['tid'] : null,
+                        ));
+                        ?>                        
                     </div>
-                    <div class="clearfix"> </div>
-                </div>	
-                <div class="header-bottom-bottom">
-                    <div class="top-nav">
-                        <span class="menu"> </span>
-                        <ul>
-                            <?php
-                            $this->widget('application.components.MenuFrontPage', array(
-                                'menuCate' => isset($_GET['tid']) ? $_GET['tid'] : null,
-                            ));
-                            ?>
-                        </ul>	
-                        <script>
-                            $("span.menu").click(function () {
-                                $(".top-nav ul").slideToggle(500, function () {
-                                });
-                            });
-                        </script>
-
-                        <div class="clearfix"> </div>					
-                    </div>
-                    <div class="search">
-                        <form>
-                            <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                        this.value = '';
-                                    }" >
-                            <input type="submit"  value="">
-                        </form>
-                    </div>
-                    <div class="clearfix"> </div>
                 </div>
             </div>
         </div>
         <!--content-->
         <div class="content">
             <div class="container">
-               <?php echo $content; ?>
+                <?php echo $content; ?>
             </div>
         </div>
         <!---->

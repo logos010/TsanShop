@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 body{
     background:#f6f6f4;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Arial, sans-serif;
 }
 body a{
     transition: 0.5s all;
@@ -117,18 +117,18 @@ a.sign-up:hover{
     background:#c3c3c3;
 }
 .top-nav ul li{
-    display:inline-block;
-    padding: 1em;
-    border-right: 1px solid #A7A5A5;
+    /*display:inline-block;*/
+    padding: 0em;
+    border-right: 0px;
 }
 .top-nav ul li a{
     text-decoration:none;
     color:#000;
     font-size:1.2em;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 .top-nav ul li a:hover,.top-nav ul li.active a{
-    color:#fff;
+    /*color:#fff;*/
 }
 /*----*/
 .top-nav span.menu:before{
@@ -300,7 +300,7 @@ p.para-in {
 .para-an h3{
     font-size:2em;
     color:#000;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 .para-an p{
     font-size: 1em;
@@ -384,7 +384,7 @@ label.cat-in{
 }
 /*----*/
 .in-left{	
-    background:url(../images/p111.jpg) 0px 0px;
+    /*background:url(../images/p111.jpg) 0px 0px;*/
     width: 100%;
     min-height: 425px;
     background-size:cover;
@@ -408,7 +408,7 @@ p.code{
     position: absolute;
     top: 46px;
     left: 10px;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 .discount{
     position:relative;
@@ -460,7 +460,7 @@ a.know-more:hover{
 .twitter-in h5{
     color: #000;
     font-size: 1.5em;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
     border-bottom: 1px solid #D0CDCD;
 }
 .up-date {
@@ -589,7 +589,7 @@ span.twitter-ic{
 .buy-an h3{
     font-size:1.5em;
     color:#000;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 .buy-an p{
     font-size: 1em;
@@ -640,7 +640,7 @@ p.footer-grid a:hover{
 .para-all h3{
     font-size:2em;
     color:#000;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 .para-all p{
     font-size: 1em;
@@ -711,7 +711,7 @@ p.footer-grid a:hover{
 .para-all-in h3{
     font-size:2em;
     color:#000;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 .para-all-in p{
     font-size: 1em;
@@ -810,7 +810,7 @@ p.footer-grid a:hover{
     color:#4a4a4a;
     font-size:1.5em;
     font-weight:600;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 p.nine{
     color:#bc3726;
@@ -1026,7 +1026,7 @@ ul.grid_1 li.grid_1-desc p{
     color:#000;
     font-size:2em;
     margin-bottom: 10px;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 .desc1 h5{
     margin-top: 2%;
@@ -1239,7 +1239,7 @@ h2.resp-accordion:hover{
     color:#5f5f5f;
     text-transform:uppercase;
     font-weight:700;
-    font-family: 'Oswald', sans-serif;
+    font-family: Arial, sans-serif;
 }
 .contact-right  h5 {
     color:#5f5f5f;
@@ -1419,13 +1419,13 @@ h2.resp-accordion:hover{
     font-size: 3em;
     color: #5f5f5f;
     font-weight: 700;
-    font-family: 'Oswald', sans-serif;	
+    font-family: Arial, sans-serif;	
 }
 .privacy-bottom h5 a{
     font-size:1.5em;
     color:#bc3726;
     text-decoration:none;
-    font-family: 'Oswald', sans-serif;	
+    font-family: Arial, sans-serif;	
 }
 .privacy-bottom h5 a:hover{
     color:#000;
@@ -1448,13 +1448,13 @@ h2.resp-accordion:hover{
     font-size: 3em;
     color: #5f5f5f;
     font-weight: 700;
-    font-family: 'Oswald', sans-serif;	
+    font-family: Arial, sans-serif;	
 }
 .article-bottom h6 a{
     font-size:1.5em;
     color:#bc3726;
     text-decoration:none;
-    font-family: 'Oswald', sans-serif;	
+    font-family: Arial, sans-serif;	
 }
 .article-bottom h6 a:hover{
     color:#000;
@@ -2191,7 +2191,7 @@ img.women{
         left:2em;
     }
     .banner{
-        min-height:290px;
+        min-height:200px;
     }
     .banner-matter h2 {
         font-size: 2.7em;
@@ -2690,3 +2690,4 @@ span.done{color: green}
 .navbar-default{background: none; border: none;}
 .navbar-default .navbar-nav > li > a{color: #FFF; font-weight: bold; font-size: 1.35em}
 .navbar-default .navbar-nav > li > a:hover{text-decoration: none; color: #bc3726}
+

@@ -2,6 +2,8 @@
 
 class UtiService {
     
+    public $position;
+    
     public static function loadCategoryNameById($tid){
         $term = Term::model()->find(array(
             'condition' => 'id=:tid',
@@ -33,13 +35,18 @@ class UtiService {
         return (!is_null($parent)) ? $parent->name: '';
     }
     
-    public static function getPromotion($position){
-        $promotion = Promotion::model()->find(array(
-            'condition' => 'position=:position',
-            'params' => array(
-                ':position' => $position
-            )
-        ));
+    public static function getPromotion($position){        
+        $criteria = new CDbCriteria();
+        $criteria->condition = "position = :position AND status = 1";
+        $criteria->params = array(
+            ":position" => $position,
+        );
+        
+        if ($position == 1){
+            $promotion = Promotion::model()->findAll($criteria);
+        }else{
+            $promotion = Promotion::model()->find($criteria);
+        }
         
         return $promotion;
     }

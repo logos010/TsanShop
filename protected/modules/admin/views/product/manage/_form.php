@@ -54,6 +54,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 //                echo $form->labelEx($model, 'status');
                 echo $form->dropDownlistRow($model, 'status', array(1 => 'Active', 0 => 'Inactive'), array('class' => 'span10'));
                 echo $form->dropDownlistRow($model, 'promote', array(1 => 'Active', 0 => 'Inactive'), array('class' => 'span10'));
+                echo $form->dropDownlistRow($model, 'commercial_status', array(1 => 'New', 2 => 'Favourite'), array('class' => 'span10'));
                 ?>                
             </div>
             <div class="pull-left span6" style="height: 500px; border: 1px solid #4b4b4b; padding: 5px; overflow-y: scroll">

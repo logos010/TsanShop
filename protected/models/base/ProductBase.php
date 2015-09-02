@@ -12,6 +12,7 @@
  * @property string $sku
  * @property integer $quantity
  * @property double $price
+ * @property integer $commercial_status
  * @property double $wholesale_price
  * @property integer $bought
  * @property double $discount
@@ -44,7 +45,7 @@ class ProductBase extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, alias, uri, image, sku, price, description, detail, status, create_time', 'required'),
-			array('quantity, bought, like, subscripbe, status, promote', 'numerical', 'integerOnly'=>true),
+			array('quantity, commercial_status, bought, like, subscripbe, status, promote', 'numerical', 'integerOnly'=>true),
 			array('price, wholesale_price, discount, sale_promotion', 'numerical'),
 			array('name, alias', 'length', 'max'=>150),
 			array('uri, image', 'length', 'max'=>255),
@@ -52,7 +53,7 @@ class ProductBase extends CActiveRecord
 			array('update_time', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, alias, uri, image, sku, quantity, price, wholesale_price, bought, discount, sale_promotion, like, subscripbe, description, detail, status, promote, create_time, update_time', 'safe', 'on'=>'search'),
+			array('id, name, alias, uri, image, sku, quantity, price, commercial_status, wholesale_price, bought, discount, sale_promotion, like, subscripbe, description, detail, status, promote, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,6 +82,7 @@ class ProductBase extends CActiveRecord
 			'sku' => 'Sku',
 			'quantity' => 'Quantity',
 			'price' => 'Price',
+			'commercial_status' => 'Commercial Status',
 			'wholesale_price' => 'Wholesale Price',
 			'bought' => 'Bought',
 			'discount' => 'Discount',
@@ -122,6 +124,7 @@ class ProductBase extends CActiveRecord
 		$criteria->compare('sku',$this->sku,true);
 		$criteria->compare('quantity',$this->quantity);
 		$criteria->compare('price',$this->price);
+		$criteria->compare('commercial_status',$this->commercial_status);
 		$criteria->compare('wholesale_price',$this->wholesale_price);
 		$criteria->compare('bought',$this->bought);
 		$criteria->compare('discount',$this->discount);
