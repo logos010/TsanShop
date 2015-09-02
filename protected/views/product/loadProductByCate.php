@@ -25,7 +25,8 @@ $this->breadcrumbs = array(
                             </div>
                         <?php endif; ?>
                         <p><?php echo $v->name; ?></p>
-                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>  | <label class="cat-in"> </label> <a href="#">Đặt mua</a></span>
+                        <!--<span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>  | <label class="cat-in"> </label> <a href="#">Đặt mua</a></span>-->
+                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>
                     </div>
                 <?php endforeach; ?>
                 <div class="clearfix"> </div>
@@ -44,7 +45,8 @@ $this->breadcrumbs = array(
                                 <img class="img-responsive women" src="<?php echo $v->image; ?>" width="240" alt="<?php echo $v->name ?>"></a>
                             <div class="hide-in">
                                 <p><?php echo $v->name ?></p>
-                                <span><?php echo number_format($v->price, 0, '', ',') ?>  |  <a href="#">Mua ngay</a></span>
+                                <!--<span><?php echo number_format($v->price, 0, '', ',') ?>  |  <a href="#">Mua ngay</a></span>-->
+                                <span><?php echo number_format($v->price, 0, '', ',') ?> 
                             </div>
                         </li>
                     <?php endforeach; ?>

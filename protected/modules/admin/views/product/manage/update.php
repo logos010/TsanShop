@@ -2,8 +2,7 @@
 $this->pageTitle = 'Update Products #' . $model->id;
 $this->breadcrumbs = array(
     'Products' => array('index'),
-    $model->name => array('view', 'id' => $model->id),
-    'Update',
+    $model->name . ' - Update',
 );
 ?>
 <div class="panel panel-default">
