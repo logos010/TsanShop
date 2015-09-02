@@ -3,7 +3,7 @@
     <div class="col-m-on">
         <div class="in-line">
             <div class="para-all">
-                <h3>Search Result</h3>
+                <h3>Kết quả tìm kiếm: "<i><?php echo $kw; ?></i>"</h3>
             </div>
 
             <!-- START LOAD PRODUCTS -->
@@ -18,7 +18,7 @@
                             </div>
                         <?php endif; ?>
                         <p><?php echo $v->name; ?></p>
-                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>  | <label class="cat-in"> </label> <a href="#">Đặt mua</a></span>
+                        <span><?php echo number_format($v->price, 0, '', ',') ?> <sup>đ</sup>
                     </div>
                 <?php endforeach; ?>
                 <div class="clearfix"> </div>

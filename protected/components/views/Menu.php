@@ -33,11 +33,21 @@
                     <?php endif; ?>
                 <?php endforeach; ?>
             </ul>
-            <form class="navbar-form navbar-left pull-right" role="search">
+            <form class="navbar-form navbar-left pull-right" id="searchForm" action="<?php echo App()->controller->createUrl('search/searchInBasic'); ?>" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm">
+                    <input type="text" id="search" name="kw" class="form-control" placeholder="Tìm kiếm">
                 </div>
             </form>  
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#search').on('keypress', function (event) {
+            if (event.which === 13) {
+                $("form#searchForm").submit();
+            }
+        });
+    });
+</script>

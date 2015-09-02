@@ -13,6 +13,7 @@ $this->breadcrumbs = array(
                 <p>Thỏa sức xem hàng tại gian hàng này.</p>
             </div>
 
+            <?php if (!empty($products)): ?>
             <!-- START LOAD PRODUCTS -->
             <div class="lady-on">
                 <?php foreach ($products as $k => $v): $img = str_replace('original', 'medium', $v->image); ?>
@@ -32,12 +33,18 @@ $this->breadcrumbs = array(
                 <div class="clearfix"> </div>
             </div>
             <!-- END LOAD PRODUCTS-->
-
+            <?php else: ?>
+                <br/>
+                <div class="alert alert-info" role="alert">
+                    <h3>Sản phẩm chưa được cập nhật, vui lòng quay lại lần sau nhé.</h3>
+                </div>
+                <br/><br/><br/><br/>
+            <?php endif; ?>
+            
             <!-- START OTHER PRODUCTS-->
             <div class="lady-in-on">
                 <div class="buy-an">
                     <h3>Sản phẩm khác</h3>
-                    <p>Check our all latest products in this section.</p>
                 </div>
                 <ul id="flexiselDemo1">	
                     <?php foreach ($otherProducts as $k => $v): ?>
